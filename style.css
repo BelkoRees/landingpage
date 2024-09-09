@@ -1,0 +1,11 @@
+.header {
+    padding: 80px; /* поля */
+    text-align: center; /* текст по центру */
+    background: #1abc9c; /* зеленый фон */
+    color: white; /* белый текст */
+  }
+  
+  /* Увеличим размер шрифта у элемента <h1> */
+  .header h1 {
+    font-size: 40px;
+  }
