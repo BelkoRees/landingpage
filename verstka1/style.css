@@ -1,0 +1,60 @@
+nav li {
+	list-style-position: inside;
+}
+
+.top-menu li {
+	display: inline-block;
+}
+
+.top-menu a {
+	color: #FFFFFF;
+    font: 14px 'Inter', sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background-color: black;
+    font-family: CustomFont, sans-serif;
+}
+
+.left-menu li{
+    padding-right: 20px;
+}
+
+#ddd {
+    padding-right: 3px;
+    width: 74px;
+}
+
+#logo {
+    padding: 0 256px 0 256px;
+}
+
+.right-menu li{
+    padding-right: 20px;
+}
+
+.header ul{
+    width: 1160px;
+    height: 60px;
+    border: 1px solid rgba(194, 196, 204, 0.2);
+
+    margin: 20px auto 20px auto;
+	padding: 0;
+}
+
+#contanct {
+    padding-right: 0px;
+}
+
+#about {
+    padding-right: 7px;
+}
+
+#reviews {
+    padding-left: 88px;
+}
+
+#cost {
+    width: 76px;
+}
