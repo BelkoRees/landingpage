@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Детейлинг центр</title>
         <link rel="stylesheet" href="style.css" type="text/css">
     </head>
@@ -8,20 +10,44 @@
         <div class="header">
             <nav>
                 <ul class="top-menu">
-                    <span class="left-menu">
-                        <li><a href="#ddd" id="ddd">Детейлинг</a><a href="#menu"><img src="icons.png"></a></li>
-                        <li id="cost"><a href="#cost">Стоимость</a></li>
+                    <!-- Левое меню -->
+                    <li class="left-menu">
+                        <a href="#ddd" id="ddd">Детейлинг</a>
+                        <a href="#menu" id="menu"><img src="icons.png" alt="Меню"></a>
+                    </li>
+                    <li class="left-menu" id="cost">
+                        <a href="#cost">Стоимость</a>
+                    </li>
+                    <li class="left-menu">
                         <a href="#about" id="about">О компании</a>
-                    </span>
-                    <li id="logo"><a href="#home"><img src="Logo.png"></a></li>
-                    <span class="right-menu">
-                        <li><a href="#reviews">Отзывы</a></li>
-                        <li><a href="#albums">Альбомы</a></li>
+                    </li>
+
+                    <!-- Логотип -->
+                    <li id="logo">
+                        <a href="#home"><img src="Logo.png" alt="Логотип"></a>
+                    </li>
+
+                    <!-- Правое меню -->
+                    <li class="right-menu">
+                        <a href="#reviews" id="reviews">Отзывы</a>
+                    </li>
+                    <li class="right-menu">
+                        <a href="#albums" id="albums">Альбомы</a>
+                    </li>
+                    <li class="right-menu">
                         <a href="#contacts" id="contact">Контакты</a>
-                    </span>                    
+                    </li>
                 </ul>
             </nav>
-
+        </div>
+        <div>
+            <hr id="hr">
+        </div>
+        <div class="main-screen">
+            <img id="car" src="car.png" alt="Автомобиль">
+            <p id="heading-h1">Добро пожаловать<br>в профессиональный детейлинг центр</p>
+            <p id="heading-h3">Доверьте нам свой автомобиль,<br>и мы преобразим его внешний вид<br>и защитим на долгие годы.</p>
+            <button id="main-button">Заказать услугу</button>
         </div>
     </body>
 </html>

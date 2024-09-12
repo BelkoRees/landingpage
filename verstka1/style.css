@@ -1,60 +1,145 @@
-nav li {
-	list-style-position: inside;
-}
-
-.top-menu li {
-	display: inline-block;
-}
-
-.top-menu a {
-	color: #FFFFFF;
-    font: 14px 'Inter', sans-serif;
-    text-decoration: none;
-}
-
+/* Общие стили */
 body {
     background-color: black;
     font-family: CustomFont, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.left-menu li{
-    padding-right: 20px;
+/* Стили для навигации */
+.header nav {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
 }
 
+.header ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 1160px;
+    height: 60px;
+    /*border: 1px solid rgba(194, 196, 204, 0.2);*/
+}
+
+/* Стили для пунктов меню */
+.top-menu li {
+    display: flex;
+    align-items: center;
+}
+
+.top-menu a {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+}
+
+.top-menu a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+/* Левое меню */
+.left-menu {
+    display: flex;
+}
+
+/* Логотип */
+#logo {
+    margin: 0 auto; /* Логотип по центру */
+}
+
+/* Правое меню */
+.right-menu {
+    display: flex;
+}
+
+/* Индивидуальные отступы для некоторых элементов */
 #ddd {
     padding-right: 3px;
+    padding-left: 0;
     width: 74px;
 }
 
-#logo {
-    padding: 0 256px 0 256px;
-}
-
-.right-menu li{
-    padding-right: 20px;
-}
-
-.header ul{
-    width: 1160px;
-    height: 60px;
-    border: 1px solid rgba(194, 196, 204, 0.2);
-
-    margin: 20px auto 20px auto;
-	padding: 0;
-}
-
-#contanct {
-    padding-right: 0px;
-}
-
-#about {
-    padding-right: 7px;
-}
-
-#reviews {
-    padding-left: 88px;
+#menu {
+    margin: 0 10px 0 0;
+    height: 18px;
 }
 
 #cost {
     width: 76px;
+    padding-right: 10px;
+}
+
+#about {
+    width: 82px;
+}
+
+#reviews {
+    width: 54px;
+    margin-left: 88px;
+}
+
+#albums {
+    width: 53;
+    margin: 0 10px;
+}
+
+#contact {
+    padding-right: 0px;
+    width: 65;
+}
+
+/* Линия разделитель */
+#hr {
+    width: 1160px;
+    border: 0; 
+    height: 1px; 
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 auto 0 auto;
+}
+
+.main-screen {
+    position: relative;
+    width: 1160px;
+    margin: auto;
+}
+
+#car {
+    display: block;
+    margin: 20px auto 80px auto;
+}
+
+#heading-h1 {
+    position: absolute;
+    top: 40px; left: 40px;
+    color: #FFFFFF;
+    font-size: 32px;
+    text-align: left;
+    width: 330px;
+    height: 126px;
+    line-height: 130%;
+}
+
+#heading-h3 {
+    position: absolute;
+    top: 336px; left: 40px;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: left;
+    width: 280px;
+    height: 54px;
+    line-height: 130%;
+}
+
+#main-button {
+    position: absolute;
+    top: 410px; left: 40px;
+    width: 194px;
+    height: 54px;
+    border: 0;
+    border-radius: 100px;
 }
