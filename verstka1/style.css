@@ -163,14 +163,17 @@ body {
     gap: 20px;
 }
 
-#heading-h2 {
+.heading-h2 {
     color: #FFFFFF;
     font-size: 28px;
     text-align: left;
-    width: 460px;
-    height: 108px;
     line-height: 130%;
     text-transform: uppercase;
+}
+
+#heading-h2 {
+    width: 460px;
+    height: 108px;
 }
 
 #heading-h4, #heading-h5 {
@@ -234,10 +237,13 @@ body {
 }
 
 .bordering {
-    padding: 30px;
     border: 1px solid rgba(194, 196, 204, 0.2);
     border-radius: 10px;
+}
+
+#cost-bordering {
     width: 373px;
+    padding: 30px;
 }
 
 .cost-bottom {
@@ -261,5 +267,39 @@ body {
 }
  
 /* Контакты */
+.contacts {
+    width: 1160px;
+    height: 422px;
+    display: flex;
+    margin: 0 auto 120px auto;
+}
+
+#contacts-bordering {
+    width: 800px;
+}
+
+#contacts-left {
+    gap: 124px;
+    display: flex;
+    flex-direction: column;
+}
+
+#heading-contacts, #heading-phone, .socials {
+    margin: 0 0 0 30px;
+}
+
+#heading-contacts {
+    margin-top: 30px;
+}
+
+.socials {
+    display: flex;
+    gap: 20px;
+}
+
+#bg-car {
+    position: absolute;
+    z-index: -1;
+}
 
 /* Подвал */
