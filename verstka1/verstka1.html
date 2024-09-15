@@ -92,7 +92,7 @@
         </div>
         
         <div class="contacts">
-            <div class="bordering" id="contacts-bordering">
+            <div class="bordering" id="contacts-bordering-left">
                 <img id="bg-car" src="bg-car.png" alt="Фон">
                 <div id="contacts-left">
                     <p class="heading-h2" id="heading-contacts">Контакты</p>
@@ -102,9 +102,68 @@
                         <img src="socials-inst.png" alt="ИНСТ">
                     </div>
                 </div>
+            </div>
+            <div class="bordering" id="contacts-bordering-right">
+                <p class="heading-h2" id="heading-contacts-right">Мы свяжемся вами</p>
+                <form>
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="tel" placeholder="+7 (000) 000-00-00" pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}" required>
+                    <p id="contacts-signature">*Нажимая на кнопку я подтверждаю, что ознакомлен и согласен с <a href="#" id="contacts-privacy-policy">Политикой обработки персональных данных</a></p>
+                    <button type="submit" id="contacts-button">
+                        Отправить
+                        <img class="arrow" id="contacts-arrow" src="arrow.png" alt="Стрелочка">
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <hr id="hr">
+        </div>
+
+        <div class="footer-start">
+            <div class="footer-one">
+                <p class="heading-footer">Услуги</p>
+                <div class="text-footer">                
+                    <p>Полировка</p>
+                    <p>Полиуретановая пленка</p>
+                    <p>Виниловая плёнка</p>
+                </div>
                 
             </div>
+            <div class="footer-one">
+                <p class="heading-footer">Разделы</p>
+                <div class="text-footer">                
+                    <p>Главная</p>
+                    <p>Стоимость</p>
+                    <p>Альбом</p>
+                </div>
+            </div>
+            <div class="footer-one">
+                <p class="heading-footer">О нас</p>
+                <div class="text-footer">                
+                    <p>О компании</p>
+                    <p>Отзывы</p>
+                    <p>Контакты</p>
+                </div>
+            </div>
+            <div class="footer-two">
+                <p id="heading-footer-phone">+7 (962) 849-83-47</p>
+                <div class="socials-footer">
+                    <img src="socials-vk.png" alt="ВК">
+                    <img src="socials-inst.png" alt="ИНСТ">
+                </div>
+            </div>
+        </div>
 
+        <div>
+            <hr id="hr">
+        </div>
+
+        <div class="footer-end">
+            <p>Политика конфиденциальности</p>
+            <p>© AntaRes 2024</p>
+            <p>Cайт сверстан: BelkoRees</p>
         </div>
     </body>
 </html>

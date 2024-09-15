@@ -143,6 +143,12 @@ body {
     height: 54px;
     border: 0;
     border-radius: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#main-button:hover {
+    background-color: #9b9b9e;
 }
 
 /* О компании */
@@ -259,6 +265,7 @@ body {
     width: 32px;
     border-radius: 100%;
     border: 0;
+    align-items: center;
 }
 
 .cost-right {
@@ -272,13 +279,15 @@ body {
     height: 422px;
     display: flex;
     margin: 0 auto 120px auto;
+    gap: 20px;
 }
 
-#contacts-bordering {
+#contacts-bordering-left {
     width: 800px;
 }
 
 #contacts-left {
+    width: 800px;
     gap: 124px;
     display: flex;
     flex-direction: column;
@@ -302,4 +311,132 @@ body {
     z-index: -1;
 }
 
+#contacts-bordering-right {
+    width: 340px;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+#heading-contacts-right {
+    font-size: 24px;
+    width: 280px;
+}
+
+form {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    background: none;
+    border: 1px solid #ffffff;
+    border-radius: 100px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+#contacts-signature {
+    font-size: 10px;
+    color: #707073;
+    margin-bottom: 52px;
+    text-align: left;
+}
+
+#contacts-privacy-policy {
+    color: #707073;
+    text-decoration: underline;
+}
+
+#contacts-privacy-policy:hover {
+    color: #ffffff;
+}
+
+#contacts-button {
+    background-color: #28282D;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+#contacts-button:hover {
+    background-color: #9b9b9e;
+}
+
+#contacts-arrow {
+    filter: invert(100%);
+}
+
 /* Подвал */
+.footer-start {
+    width: 1160px;
+    height: 127px;
+    display: flex;
+    gap: 40px;
+    margin: 40px auto;
+}
+
+.footer-one {
+    width: 260px;
+    height: 127px;
+}
+
+.heading-footer {
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 130%;
+    margin: 0 0 20px 0;
+}
+
+.text-footer p{
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 130%;
+    margin: 0 0 15px 0;
+}
+
+.footer-two {
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 130%;
+    margin: 0 0 32px 0;
+    text-align: right;
+    width: 260px;
+}
+
+.socials-footer {
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+}
+
+#heading-footer-phone {
+    font-size: 18px;
+    margin: 0 0 30px 0;
+}
+
+.footer-end {
+    width: 1160px;
+    height: 44px;
+    font-size: 14px;
+    color: #707073;
+    display: flex;
+    margin: 20px auto 60px auto;
+    justify-content: space-between;
+}
+.footer-end p{
+    margin: 0;
+}
