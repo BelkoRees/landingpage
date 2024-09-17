@@ -14,7 +14,7 @@ body {
     color: rgb(255, 255, 255);
 }
 
-/* Стили для навигации */
+/* Меню */
 .header nav {
     display: flex;
     justify-content: center;
@@ -31,7 +31,6 @@ body {
     height: 60px;
 }
 
-/* Стили для пунктов меню */
 .top-menu li {
     display: flex;
     align-items: center;
@@ -49,17 +48,14 @@ body {
     border-radius: 4px;
 }
 
-/* Левое меню */
 .left-menu {
     display: flex;
 }
 
-/* Логотип */
 #logo {
-    margin: 0 auto; /* Логотип по центру */
+    margin: 0 auto;
 }
 
-/* Правое меню */
 .right-menu {
     display: flex;
 }
@@ -125,6 +121,7 @@ body {
     margin: 20px auto 80px auto;
     background: url(car.png);
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .main-screen::before {
@@ -163,7 +160,6 @@ body {
 }
 
 #heading-h3 {
-    top: 336px; left: 40px;
     color: #FFFFFF;
     font-size: 14px;
     text-align: left;
@@ -178,7 +174,6 @@ body {
     gap: 5px;
     justify-content: center;
     align-items: center;
-    top: 410px; left: 40px;
     width: 194px;
     height: 54px;
     border: 0;
@@ -195,6 +190,8 @@ body {
 /* О компании */
 .about-and-cost {
     position: relative;
+    width: 1160px;
+    margin: 0 auto 0 auto;
 }
 
 .about-and-cost::before {
@@ -249,14 +246,6 @@ body {
     line-height: 130%;
 }
 
-#heading-h4, #heading-h6 {
-    left: 586px;
-}
-
-#heading-h5 {
-    right: 0;
-}
-
 #heading-h6 {
     color: #ffffff;
     font-size: 18px;
@@ -265,7 +254,6 @@ body {
     height: 46px;
     line-height: 130%;
     text-transform: uppercase;
-    top: 92px;
 }
 
 #heading-h2, #heading-h4, #heading-h5, #heading-h6 {
@@ -339,17 +327,18 @@ body {
     display: flex;
     margin: 0 auto 120px auto;
     gap: 20px;
+    
 }
 
 .contacts::before {
     content: "";
-    background: radial-gradient(circle 350px, rgba(5,0,255,0.6), transparent);
+    background: radial-gradient(circle 300px, rgba(5,0,255,0.6), transparent);
     position: absolute;
-    width: 100%;
-    height: 100%;
-    filter: blur(200px);
-    left: 0;
-    transform: translate(50%, 200px);
+    width: 300px;
+    height: 300px;
+    filter: blur(150px);
+    right: 0; bottom: 0;
+    transform: translate(50%, 50%);
     z-index: -1;
 }
 
@@ -386,13 +375,13 @@ body {
     width: 340px;
     padding: 30px;
     border-radius: 10px;
-    text-align: center;
     color: white;
 }
 
 #heading-contacts-right {
     font-size: 24px;
     width: 280px;
+    text-align: center;
 }
 
 form {
@@ -510,4 +499,153 @@ input::placeholder {
 }
 .footer-end p{
     margin: 0;
+}
+
+/* Адаптация */
+
+@media (max-width: 1200px) {
+
+    /* Меню */
+    .header ul {
+        width: 1000px;
+    }
+
+    /* Линия разделитель */
+    #hr {
+        width: 1000px;
+    }
+
+    /* Главный экран */
+    .main-screen {
+        width: 1000px;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    #main-screen-info {
+        padding: 20px 0 20px 20px;
+    }
+
+    #heading-h1 {
+        font-size: 28px;
+        height: 100%;
+        margin: 0 0 90px 0;
+    }
+
+    #heading-h3 {
+        height: 100%;
+    }
+
+    #main-button {
+        height: 50px;
+    }
+
+    /* О компании */
+    .about-and-cost {
+        width: 1000px;
+    }
+
+    .about {
+        width: 1000px;
+        gap: 0px;
+    }
+
+    .heading-h2 {
+        font-size: 26px;
+    }
+
+    #heading-h2 {
+        margin: 0;
+    }
+
+    #heading-h4 {
+        width: 260px;
+    }
+
+    #heading-h5 {
+        width: 220px;
+    }
+
+    #heading-h6 {
+        width: auto;
+    }
+
+    /* Стоимость */
+    .cost {
+        width: 1000px;
+        height: 100%;
+        flex-wrap: wrap;
+    }
+
+    #cost-bordering {
+        width: 375px;
+        padding: 30px;
+    }
+
+    .cost-bottom {
+        width: 100%;
+    }
+
+    /* Контакты */
+    .contacts {
+        width: 1000px;     
+    }
+
+    .contacts::before {
+        background: radial-gradient(circle 240px, rgba(5,0,255,0.6), transparent);
+        filter: blur(130px);
+        transform: translate(30%, 30%);
+    }
+
+    #contacts-bordering-left {
+        width: 600px;
+    }
+
+    #contacts-left {
+        width: 600px;
+    }
+
+    #bg-car {
+        width: 600px;
+        height: 422px;
+    }
+
+    #contacts-bordering-right {
+        width: 100%;
+        align-content: center;
+    }
+
+    #heading-contacts-right {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    /* Подвал */
+    .footer-start {
+        width: 1000px;
+    }
+
+    .footer-end {
+        width: 1000px;
+    }
+
+
+}
+
+@media (max-width: 1000px) {
+    
+}
+
+@media (max-width: 768px) {
+    
+}
+
+@media (max-width: 480px) {
+    
 }
