@@ -60,6 +60,10 @@ body {
     display: flex;
 }
 
+#menu-burger {
+    display: none;
+}
+
 /* Индивидуальные отступы для некоторых элементов */
 #ddd {
     margin-right: 3px;
@@ -778,6 +782,75 @@ input:focus {
     }
 }
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    /* Меню */
+    .header ul {
+        width: 480px;
+    }
+
+    .header li {
+        display: none;
+    }
+
+    #logo {
+        display: block;
+        margin-left: 0;
+    }
+
+    #menu-burger {
+        display: block;
+    }
+
+    /* Линия разделитель */
+    #hr {
+        width: 480px;
+    }
+
+    /* Главный экран */
+    .main-screen {
+        width: 480px;
+    }
+
+    /* О компании */
+    .about-and-cost {
+        width: 480px;
+    }
+
+    .about {
+        width: 480px;
+    }
+
+    /* Стоимость */
+    .cost {
+        width: 480px;
+    }
+
+    /* Контакты */
+    .contacts {
+        width: 480px;
+        margin-bottom: 80px;
+    }
+
+    #contacts-bordering-left {
+        width: 480px;
+    }
+
+    #contacts-left {
+        width: 480px;
+    }
+
+    #bg-car {
+        width: 480px;
+    }
+
+    /* Подвал */
+    .footer-start {
+        width: 480px;
+    }
+
+    .footer-end {
+        width: 480px;
+    }
+}
 
 @media (max-width: 480px) {}
