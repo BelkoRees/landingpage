@@ -159,7 +159,7 @@ ul.dropdown-menu {
     width: 1160px;
     height: 500px;
     margin: 20px auto 80px auto;
-    background: url(car.png);
+    background: url(icons/car.png);
     overflow: hidden;
     border-radius: 10px;
 }
