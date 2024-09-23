@@ -766,7 +766,7 @@ input:focus {
         height: 422px;
         position: absolute;
         right: 0;
-        padding: 0 30px 0 30px;
+        padding: 0 30px;
         border-radius: 0 10px 10px 0;
     }
 
@@ -819,37 +819,235 @@ input:focus {
         width: 480px;
     }
 
+    .inline-headings {
+        flex-direction: column;
+        gap: 20px;
+    }
+
     /* Стоимость */
     .cost {
         width: 480px;
     }
 
+    #cost-bordering {
+        padding: 30px 20px;
+    }
+
     /* Контакты */
     .contacts {
         width: 480px;
-        margin-bottom: 80px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     #contacts-bordering-left {
         width: 480px;
+        height: 200px;
     }
 
     #contacts-left {
         width: 480px;
+        height: 200px;
+        gap: 20px;
     }
 
     #bg-car {
         width: 480px;
+        height: 200px;
+    }
+
+    #contacts-bordering-right {
+        width: 380px;
+        height: 420px;
+        position: relative;
+        right: 0;
+        padding: 0 50px;
+        border-radius: 10px;
+    }
+
+    br {
+        content: " ";
+        display: none;
+    }
+
+    #heading-contacts,
+    #heading-phone,
+    .socials {
+    margin-left: 20px;
     }
 
     /* Подвал */
     .footer-start {
         width: 480px;
+        height: 100%;
+        flex-wrap: wrap;
+
+    }
+
+    .footer-one {
+        width: 25%;
+        height: 100%;
+    }
+
+    .heading-footer {
+        width: 100%;
+    }
+
+    .footer-two {
+        width: 100%;
+        display: flex;
+    }
+
+    #heading-footer-phone {
+        position: relative;
+        width: 100%;
+        text-align: left;
+        margin: 0;
+        align-content: center;
+    }
+
+    .socials-footer {
+        position: relative;
+        gap: 20px;
+        justify-content: start;
+        height: 42px;
     }
 
     .footer-end {
         width: 480px;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .footer-end p:nth-child(2) {
+        text-align: right; /* Только второй параграф выравнивается по правому краю */
     }
 }
 
-@media (max-width: 480px) {}
+@media (max-width: 480px) {
+    /* Меню */
+    .header ul {
+        width: 320px;
+    }
+
+    /* Линия разделитель */
+    #hr {
+        width: 320px;
+    }
+
+    /* Главный экран */
+    .main-screen {
+        width: 320px;
+        height: 480px;
+    }
+
+    #main-screen-info {
+        padding: 10px;
+    }
+
+    #heading-h1 {
+        margin-bottom: 190px;
+    }
+
+    #main-button {
+        width: 100%;
+    }
+
+    /* О компании */
+    .about-and-cost {
+        width: 320px;
+    }
+
+    .about {
+        width: 320px;
+    }
+
+    #heading-h2 {
+        width: 100%;
+    }
+
+    #heading-h6 {
+        height: 100%;
+    }
+
+    #heading-h2, .inline-headings, #heading-h6 {
+        margin: 0 10px;
+    }
+
+    /* Стоимость */
+    .cost {
+        width: 320px;
+    }
+
+    /* Контакты */
+    .contacts {
+        width: 320px;
+    }
+
+    #contacts-bordering-left {
+        width: 320px;
+    }
+
+    #contacts-left {
+        width: 320px;
+    }
+
+    #bg-car {
+        width: 320px;
+    }
+
+    #contacts-bordering-right {
+        width: 290px;
+        height: 360px;
+        padding: 0 15px;
+    }
+
+    #heading-contacts,
+    #heading-phone,
+    .socials {
+    margin-left: 15px;
+    }
+
+    /* Подвал */
+    .footer-start {
+        width: 320px;
+        flex-wrap: wrap;
+
+    }
+
+    .footer-one {
+        width: 40%;
+    }
+
+    .heading-footer {
+        width: 100%;
+    }
+
+    .footer-two {
+        width: 100%;
+        margin: 0;
+    }
+
+    #heading-footer-phone {
+        text-align: end;
+    }
+
+    .socials-footer {
+        order: -1;
+    }
+
+    .footer-end {
+        width: 320px;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .footer-end p:nth-child(2) {
+        text-align: center;
+    }
+
+    .footer-end p{
+        text-align: center;
+    }
+}
