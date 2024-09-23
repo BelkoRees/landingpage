@@ -43,11 +43,6 @@ body {
     text-decoration: none;
 }
 
-.top-menu a:hover {
-    background-color: #555;
-    border-radius: 4px;
-}
-
 .left-menu {
     display: flex;
 }
@@ -63,6 +58,48 @@ body {
 #menu-burger {
     display: none;
 }
+
+/* Подпункты меню */
+.left-menu {
+    position: relative; 
+}
+
+/* Скрытое меню */
+ul.dropdown-menu {
+    position: absolute;
+    display: none; /* По умолчанию меню скрыто */
+    top: 100%; /* Меню появляется под кнопкой */
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    z-index: 1000; /* Меню отображается поверх других элементов */
+    width: max-content; /* Устанавливает ширину в зависимости от содержимого */
+    height: max-content;
+}
+
+/* Показываем меню при наведении на кнопку с id #menu или на родительский элемент */
+.left-menu:hover .dropdown-menu,
+#menu:focus + .dropdown-menu {
+    display: block; /* Меню становится видимым при наведении */
+}
+
+/* Стили для элементов внутри выпадающего меню */
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    padding: 5px;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #1c1c22;
+    color: #FFFFFF;
+}
+
 
 /* Индивидуальные отступы для некоторых элементов */
 #detailing {
