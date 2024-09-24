@@ -297,10 +297,8 @@ ul.dropdown-menu {
     text-transform: uppercase;
 }
 
-#heading-h2,
-#heading-h4,
-#heading-h5,
-#heading-h6 {
+#heading-h2, #heading-h4,
+#heading-h5, #heading-h6 {
     margin-top: 0;
 }
 
