@@ -62,3 +62,21 @@ function checkForm(event) {
         window.location = 'https://obzorposudy.ru/polezno/cto-znacit-fraza-menya-zaskamili';
     }
 }
+
+var counter = 0;
+var end = setInterval(my_func, 500);
+
+function my_func() {
+    counter++;
+    text.innerHTML += " хи-хи";
+    if(counter == 15)
+        text.innerHTML += " СТРАЩНО? :-)";
+    if(counter == 25)
+        text.innerHTML += " ДА Я ШУЧУ! Как дела?)";
+    if(counter == 35)
+        text.innerHTML += " Ладно, готовься, сейчас будет прикол...";
+    if(counter == 60)
+        clearInterval(end);
+}
+
+
