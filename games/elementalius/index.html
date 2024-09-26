@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="game">
+        <h1>Элементалиус 1.0</h1>
+        <div class="counter-block">
+            <div class="count count-user">0</div>
+            <span>:</span>
+            <div class="count count-comp">0</div>
+        </div>
+        <div class="figure-container">
+            <div class="user-field">
+                <button class="field water" data-field="w"></button>
+                <button class="field ground" data-field="g"></button>
+                <button class="field air" data-field="a"></button>
+                <button class="field fire" data-field="f"></button>
+            </div>
+            <div class="comp-field">
+                <button class="field water" data-field="w"></button>
+                <button class="field ground" data-field="g"></button>
+                <button class="field air" data-field="a"></button>
+                <button class="field fire" data-field="f"></button>
+            </div>
+        </div>
+        <form class="user-choice">
+            <input type="radio" class="choice" id="att" name="action" value="att">
+            <label for="att">Атакуем!</label>
+        
+            <input type="radio" class="choice" id="def" name="action" value="def">
+            <label for="def">Защищаемся!</label>
+        </form>
+        
+        <h3 class="result">Сделайте выбор</h3>
+    </div>
+    <div class="buttons">
+        <button class="play">Играть заново</button>
+    </div>
+
+    <audio src="#" class="sound"></audio>
+    <script src="js/main.js"></script>
+</body>
+</html>
