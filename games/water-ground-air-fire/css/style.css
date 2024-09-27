@@ -27,7 +27,7 @@ body {
 	padding: 10px;
 	display: flex;
 	justify-content: space-around;
-	font-size: 40px;
+	font-size: 44px;
 }
 .counter-block span {
 	margin:0 25px;
@@ -48,11 +48,11 @@ body {
 	top:50px;
 }
 .count-user::before {
-	content:"Хп Игрока";
+	content:"Игрок";
 	left:-5px;
 }
 .count-comp::before {
-	content:"Хп врага";
+	content:"Комп";
 	right:-5px;
 }
 .figure-container {
@@ -78,7 +78,7 @@ body {
 	box-shadow: 3px 3px 5px #000;
 	outline: none;
 }
-.result, .user-choice {
+.result {
 	text-align: center;
 }
 .field.active {
@@ -144,34 +144,6 @@ body {
 	background: linear-gradient(180deg, #00cb48, #126e01);
 }
 
-.modal {
-    display: none; /* Скрыто по умолчанию */
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);  /* Полупрозрачный фон */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Модальное окно всегда поверх */
-}
-
-.modal-content {
-    background-color: #242323;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	
-}
-
-.bg-win {
-    background: url(../img/win.png) center;
-}
-
-.bg-loss {
-    background: url(../img/loss.png) center;
-}
 
 @media(max-width:700px) {
 	.game {

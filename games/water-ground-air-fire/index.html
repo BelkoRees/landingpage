@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class="game">
-        <h1>Элементалиус 2.0</h1>
+        <h1>Элементалиус 1.0</h1>
         <div class="counter-block">
-            <div class="count count-user">10</div>
+            <div class="count count-user">0</div>
             <span>:</span>
-            <div class="count count-comp">10</div>
+            <div class="count count-comp">0</div>
         </div>
         <div class="figure-container">
             <div class="user-field">
@@ -28,29 +28,19 @@
                 <button class="field fire" data-field="f"></button>
             </div>
         </div>
-        <h3 class="result">Сделайте выбор</h3>
-
-        <div class="result" id="whatdoyouwant">Что вы хотите делать первым ходом?</div>
         <form class="user-choice">
             <input type="radio" class="choice" id="att" name="action" value="att">
-            <label for="att">Атаковать!</label>
+            <label for="att">Атакуем!</label>
         
             <input type="radio" class="choice" id="def" name="action" value="def">
-            <label for="def">Защищаться!</label>
+            <label for="def">Защищаемся!</label>
         </form>
-
+        
+        <h3 class="result">Сделайте выбор</h3>
     </div>
     <div class="buttons">
         <button class="play">Играть заново</button>
     </div>
-
-    <div class="modal" id="modal">
-        <div class="modal-content buttons">
-            <h2 id="modal-message"></h2>
-            <button class="play" id="restart-button">Играть заново</button>
-        </div>
-    </div>
-    
 
     <audio src="#" class="sound"></audio>
     <script src="js/main.js"></script>
