@@ -176,15 +176,15 @@ let countUser = document.querySelector('.count-user'),
 
         // Проверяем, кто выиграл
         if (countU <= 0) {
-            modalMessage.innerText = 'К сожалению, вы проиграли эту войну';
             modalContents.forEach(modalContent => {
                 modalContent.classList.add('bg-loss');
             });
+            modalMessage.innerText = 'К сожалению, вы проиграли эту войну';
         } else if (countC <= 0) {
-            modalMessage.innerText = 'Вы одолели этого врага, поздравляю!';
             modalContents.forEach(modalContent => {
                 modalContent.classList.add('bg-win');
             });
+            modalMessage.innerText = 'Вы одолели этого врага, поздравляю!';
         }
         
         // Показываем модальное окно
@@ -237,6 +237,13 @@ let countUser = document.querySelector('.count-user'),
         document.querySelector('label[for="def"]').innerText = 'Защищаемся!';
         document.querySelector('label[for="att"]').style.color = 'white';
         document.querySelector('label[for="def"]').style.color = 'white';
+        // Чтобы не было бага с неизменяемой картинкой в модуле
+        document.querySelectorAll('.modal-content').forEach(modalContent => {
+            modalContent.classList.remove('bg-loss');
+        });
+        document.querySelectorAll('.modal-content').forEach(modalContent => {
+            modalContent.classList.remove('bg-win');
+        });
 
         countU = countC = 10;
         result.innerText = 'Сделайте выбор';
