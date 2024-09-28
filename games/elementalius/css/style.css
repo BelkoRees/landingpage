@@ -1,5 +1,5 @@
 body {
-	background: #5c6359;
+	background: #1D1E25;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -9,111 +9,146 @@ body {
 	font-size: 16px;
 	font-family: sans-serif;
 }
+
 .game {
-	border:3px solid #fff;
-	width: 100%;
-	max-width: 700px;
-	padding:50px;
+	display: flex;
+	border: 5px solid #fff;
+	max-width: 800px;
+	max-height: 680px;
+	padding: 20px;
+	padding-bottom: 70px;
 	border-radius: 3px;
+	justify-content: space-between;
 }
+
+.user-left {
+	width: 220px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.center-info {
+	width: 276px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.comp-rigt {
+	width: 220px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.user-field, .comp-field {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+
+
 .game h1 {
 	font-size: 30px;
 	text-align: center;
 }
-.counter-block {
-	width: 200px;
-	border:2px solid #000;
-	margin:20px auto;
-	padding: 10px;
-	display: flex;
-	justify-content: space-around;
-	font-size: 40px;
-}
-.counter-block span {
-	margin:0 25px;
-}
-.count {
-	position: relative;
-	width: 50px;
-	text-align: center;
-}
-.count::before {
-	content:"";
-	display: block;
-	padding:3px 8px;
-	background: #1E88E5;
-	color: #fff;
-	font-size: 14px;
-	position: absolute;
-	top:50px;
-}
-.count-user::before {
-	content:"Хп Игрока";
-	left:-5px;
-}
-.count-comp::before {
-	content:"Хп врага";
-	right:-5px;
-}
+
 .figure-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding:30px 20px;
 }
-.user-field,
-.comp-field {
-	width: 50%;
-	display: flex;
-}
+
 .field {
-	width: 70px;
-	height: 70px;
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
 	border-radius: 50%;
 	border:4px solid #fff;
 	cursor: pointer;
 	margin:5px;
 	transition:.2s;
 	overflow: hidden;
-	box-shadow: 3px 3px 5px #000;
+	box-shadow: 2px 2px 3px #783a67;
 	outline: none;
 }
+
+.comp-field .field{
+	box-shadow: 2px 2px 3px #0f132d;
+}
+
 .result, .user-choice {
 	text-align: center;
 }
+
+.user-choice {
+	height: 40px;
+	line-height: 40px;
+}
+
+.user-choice label{
+	border: 1px solid #fff;
+	padding: 10px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+/* Стили для кнопки "Атакуем!" */
+#att:checked + label {
+    background-color: red; /* Красный фон для выбранной метки */
+    color: white; /* Белый текст для выбранной метки */
+}
+
+/* Стили для кнопки "Защищаемся!" */
+#def:checked + label {
+    background-color: blue; /* Синий фон для выбранной метки */
+    color: white; /* Белый текст для выбранной метки */
+}
+
+p, .count{
+	border: 3px solid #fff;
+	width: 220px;
+	height: 50px;
+	line-height: 50px; /* Равняем по высоте контейнера */
+    text-align: center;
+	margin: 0;
+	font-size: 20px;
+}
+
+.h3 {
+	margin: 0;
+}
+
 .field.active {
 	background-color: green;
 }
 .field.error {
 	background-color: red;
 }
-.comp-field {
-	justify-content: flex-end;
-}
+
 .water {
-	background: url(../img/water.png) center no-repeat;
+	background: url(../img/water.svg) center no-repeat;
 }
 .ground {
-	background: url(../img/ground.png) center no-repeat;
+	background: url(../img/ground.svg) center no-repeat;
 }
 .air {
-	background: url(../img/air.png) center no-repeat;
+	background: url(../img/air.svg) center no-repeat;
 }
 .fire {
-	background: url(../img/fire.png) center no-repeat;
+	background: url(../img/fire.svg) center no-repeat;
 }
-.comp-field.blink .rock {
-	animation: blink 0.3s linear infinite;
-}
-.comp-field.blink .scissors {
-	animation: blink 0.3s 0.1s linear infinite;
-}
-.comp-field.blink .paper {
-	animation: blink 0.3s 0.2s linear infinite;
-}
-.comp-field.blink {
-	animation-play-state: paused;
-}
+
 @keyframes blink {
 	100% {background-color: green;}
 }
@@ -140,6 +175,7 @@ body {
 	transform:translate(1px,1px);
 	box-shadow: 1px 1px 0 #0c4e00;
 }
+
 .play {
 	background: linear-gradient(180deg, #00cb48, #126e01);
 }
@@ -173,38 +209,58 @@ body {
     background: url(../img/loss.png) center;
 }
 
-@media(max-width:700px) {
-	.game {
-		padding: 10px;
-	}
-	.figure-container {
+@media (max-width: 800px) {
+    .game {
+		max-width: 302px;
+		max-height: 840px;
 		flex-direction: column;
 	}
-	.user-field,
-	.comp-field {
-		width: 100%;
+
+	.user-left {
+		width: 302px;
+		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
+		gap: 15px;
 	}
-	.user-field {
-		margin-bottom: 20px;
+	
+	.center-info {
+		width: 300px;
+		gap: 10px;
+		order: -1;
+		margin-bottom: 40px;
 	}
-	.user-field::before {
-		content:"Игрок:";
-		display: block;
-		width: 100%;
-		font-size: 20px;
-		text-align: center;
+	
+	.comp-rigt {
+		width: 302px;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 15px;
 	}
-	.comp-field::before {
-		content:"Компьютер:";
-		display: block;
-		width: 100%;
-		font-size: 20px;
-		text-align: center;
+
+	.field {
+		width: 60px;
+		height: 60px;
+		
 	}
-	.game h1 {
-		font-size: 20px;
+
+	.water {
+		background: url(../img/water-mob.svg) center no-repeat;
 	}
+	.ground {
+		background: url(../img/ground-mob.svg) center no-repeat;
+	}
+	.air {
+		background: url(../img/air-mob.svg) center no-repeat;
+	}
+	.fire {
+		background: url(../img/fire-mob.svg) center no-repeat;
+	}
+
+	p, .count{
+		width: 140px;
+		height: 40px;
+		line-height: 40px; 
+		font-size: 16px;
+	}
+
 }

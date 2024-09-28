@@ -214,13 +214,13 @@ let countUser = document.querySelector('.count-user'),
 
         if (attack) {
             document.querySelector('#att').checked = true; // Устанавливаем атаку
-            attackLabel.style.color = 'red';
+            attackLabel.style.color = 'white';
             attackLabel.style.display = 'inline';
             attackLabel.innerText = 'Теперь атакуем!';
             defenseLabel.style.display = 'none';
         } else {
             document.querySelector('#def').checked = true; // Устанавливаем защиту
-            defenseLabel.style.color = 'blue';
+            defenseLabel.style.color = 'white';
             defenseLabel.style.display = 'inline';
             defenseLabel.innerText = 'Теперь защищаемся!';
             attackLabel.style.display = 'none';
@@ -231,12 +231,10 @@ let countUser = document.querySelector('.count-user'),
     function playGame() {
         // Возвращаем всё на свои места
         document.getElementById('whatdoyouwant').style.display = 'block';
-        document.querySelector('#att').style.display = 'inline-block'; 
-        document.querySelector('#def').style.display = 'inline-block'; 
         document.querySelector('label[for="att"]').style.display = 'inline';
         document.querySelector('label[for="def"]').style.display = 'inline';
-        document.querySelector('label[for="att"]').innerText = 'Атаковать!';
-        document.querySelector('label[for="def"]').innerText = 'Защищаться!';
+        document.querySelector('label[for="att"]').innerText = 'Атакуем!';
+        document.querySelector('label[for="def"]').innerText = 'Защищаемся!';
         document.querySelector('label[for="att"]').style.color = 'white';
         document.querySelector('label[for="def"]').style.color = 'white';
 
