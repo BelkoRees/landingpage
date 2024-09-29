@@ -1,5 +1,5 @@
 body {
-	background: #1D1E25;
+	background: #393B48;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -148,6 +148,9 @@ p, .count{
 .fire {
 	background: url(../img/fire.svg) center no-repeat;
 }
+.grass {
+	background: url(../img/grass.svg) center no-repeat;
+}
 
 @keyframes blink {
 	100% {background-color: green;}
@@ -209,6 +212,10 @@ p, .count{
     background: url(../img/loss.png) center;
 }
 
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 800px) {
     .game {
 		max-width: 302px;
@@ -255,12 +262,19 @@ p, .count{
 	.fire {
 		background: url(../img/fire-mob.svg) center no-repeat;
 	}
+	.grass {
+		background: url(../img/grass-mob.svg) center no-repeat;
+	}
 
 	p, .count{
 		width: 140px;
 		height: 40px;
 		line-height: 40px; 
 		font-size: 16px;
+	}
+
+	.comp-text {
+		order: -1;
 	}
 
 }
