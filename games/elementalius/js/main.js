@@ -486,7 +486,7 @@ let countUser = document.querySelector('.count-user'),
             field.forEach(item => item.classList.remove('active','error'));
         }
         else if (level == 2) {
-            countU = countC = 10;                                                                                                             ;
+            countU = countC = 15;                                                                                                             ;
             result.innerText = 'Сделайте выбор';
             countUser.innerText = '15';
             countComp.innerText = '15';
