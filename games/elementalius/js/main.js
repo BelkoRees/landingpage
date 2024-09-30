@@ -11,7 +11,7 @@ let countUser = document.querySelector('.count-user'),
     field = document.querySelectorAll('.field'),
     choice = document.querySelectorAll('.choice'),
     result = document.querySelector('.result'),
-    userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attack = null;
+    userStep, userCh, compStep, countU = 10, countC = 1, level = 1, blocked = false, attack = null;
 
 
     function userAttDef(event) {
@@ -63,6 +63,8 @@ let countUser = document.querySelector('.count-user'),
                 winner();
             else if (level == 2)
                 winner2();
+            else if (level == 3)
+                winner3();
         }, 1000)
     }
 
@@ -134,7 +136,7 @@ let countUser = document.querySelector('.count-user'),
                 case 'fg':
                 case 'fa':
                     result.innerText = 'Враг нанес вам урон';
-                    sound.setAttribute('src', 'audio/loss-test.mp3');
+                    sound.setAttribute('src', 'audio/loss.mp3');
                     sound.play();
                     countU--;
                     countUser.innerText = countU;
@@ -144,7 +146,7 @@ let countUser = document.querySelector('.count-user'),
                 case 'wf':
                 case 'gf':
                     result.innerText = 'Враг нанес вам двойной урон!!';
-                    sound.setAttribute('src', 'audio/loss-test.mp3');
+                    sound.setAttribute('src', 'audio/loss.mp3');
                     sound.play();
                     countU -= 2;
                     countUser.innerText = countU;
@@ -154,7 +156,7 @@ let countUser = document.querySelector('.count-user'),
                 case 'fw':
                 case 'ff':
                     result.innerText = 'Враг нанес только половину урона!';
-                    sound.setAttribute('src', 'audio/loss-test.mp3');
+                    sound.setAttribute('src', 'audio/loss.mp3');
                     sound.play();
                     countU -= 0.5;
                     countUser.innerText = countU;
@@ -237,7 +239,7 @@ let countUser = document.querySelector('.count-user'),
                 case 'aa':
                 case 'af':
                     result.innerText = 'Враг нанес вам урон';
-                    sound.setAttribute('src', 'audio/loss-test.mp3');
+                    sound.setAttribute('src', 'audio/loss.mp3');
                     sound.play();
                     countU--;
                     countUser.innerText = countU;
@@ -249,7 +251,7 @@ let countUser = document.querySelector('.count-user'),
                 case 'grg':
                 case 'grw':
                     result.innerText = 'Враг нанес вам двойной урон!!';
-                    sound.setAttribute('src', 'audio/loss-test.mp3');
+                    sound.setAttribute('src', 'audio/loss.mp3');
                     sound.play();
                     countU -= 2;
                     countUser.innerText = countU;
@@ -259,13 +261,118 @@ let countUser = document.querySelector('.count-user'),
                 case 'grf':
                 case 'gra':
                     result.innerText = 'Враг нанес только половину урона!';
-                    sound.setAttribute('src', 'audio/loss-test.mp3');
+                    sound.setAttribute('src', 'audio/loss.mp3');
                     sound.play();
                     countU -= 0.5;
                     countUser.innerText = countU;
                     userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
                     break;
         }
+        }
+
+        if (countU <= 0 || countC <= 0)
+            winnerWindow()
+
+        // Автоматически переключаем радиокнопки
+        toggleRadio();
+    }
+
+    function winner3() {
+        // gr compStep => ice (gr => i)
+        blocked = false;
+
+        let comb;
+        if (attack == true) {
+            comb = userStep + compStep;
+            switch(comb) {
+                case 'ga':
+                    result.innerText = 'Враг устоял! 0 урона';
+                    sound.setAttribute('src', 'audio/draw.mp3');
+                    sound.play();
+                    break;
+                case 'gw':
+                case 'gg':
+                case 'wa':
+                case 'aw':
+                case 'ag':
+                case 'aa':
+                case 'fg':
+                case 'fa':
+                case 'ai':
+                case 'gi':
+                    result.innerText = 'Вы нанесли урон!';
+                    sound.setAttribute('src', 'audio/win.mp3');
+                    sound.play();
+                    countC--;
+                    countComp.innerText = countC;
+                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
+                    break;
+                case 'wg':
+                case 'fi':
+                    result.innerText = 'Вы нанесли двойной урон!!!';
+                    sound.setAttribute('src', 'audio/win.mp3');
+                    sound.play();
+                    countC -= 2;
+                    countComp.innerText = countC;
+                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
+                    break;
+                case 'ww':
+                case 'fw':
+                case 'wi':
+                    result.innerText = 'Вы нанесли лишь половину урона';
+                    sound.setAttribute('src', 'audio/win.mp3');
+                    sound.play();
+                    countC -= 0.5;
+                    countComp.innerText = countC;
+                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
+                    break;
+            }
+        }
+        else if (attack == false) {
+            comb = compStep + userStep;
+            switch(comb) {
+                case 'ga':
+                    result.innerText = 'Вы устояли! Враг не нанес вам урона!';
+                    sound.setAttribute('src', 'audio/draw.mp3');
+                    sound.play();
+                    break;
+                case 'gw':
+                case 'gg':
+                case 'wa':
+                case 'aw':
+                case 'ag':
+                case 'aa':
+                case 'af':
+                    result.innerText = 'Враг нанес вам урон';
+                    sound.setAttribute('src', 'audio/loss.mp3');
+                    sound.play();
+                    countU--;
+                    countUser.innerText = countU;
+                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
+                    break;
+                case 'wg':
+                case 'wf':
+                case 'gf':
+                case 'ig':
+                case 'ia':
+                    result.innerText = 'Враг нанес вам двойной урон!!';
+                    sound.setAttribute('src', 'audio/loss.mp3');
+                    sound.play();
+                    countU -= 2;
+                    countUser.innerText = countU;
+                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
+                    break;
+                case 'ww':
+                case 'if':
+                case 'iw':
+                    result.innerText = 'Враг нанес только половину урона!';
+                    sound.setAttribute('src', 'audio/loss.mp3');
+                    sound.play();
+                    countU -= 0.5;
+                    countUser.innerText = countU;
+                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
+                    break;
+                }
         }
 
         if (countU <= 0 || countC <= 0)
@@ -305,6 +412,10 @@ let countUser = document.querySelector('.count-user'),
                 playGame()
             }
             else if (level == 2) {
+                level++;
+                playGame()
+            }
+            else if (level == 3) {
                 modalContents.forEach(modalContent => {
                     modalContent.classList.add('bg-win');
                 });
@@ -368,17 +479,17 @@ let countUser = document.querySelector('.count-user'),
         });
 
         if (level == 1) {
-            countU = countC = 10;
+            countU = countC = 1;
             result.innerText = 'Сделайте выбор';
             countUser.innerText = '10';
             countComp.innerText = '10';
             field.forEach(item => item.classList.remove('active','error'));
         }
         else if (level == 2) {
-            countU = countC = 20;
+            countU = countC = 1                                                                                                             ;
             result.innerText = 'Сделайте выбор';
-            countUser.innerText = '20';
-            countComp.innerText = '20';
+            countUser.innerText = '15';
+            countComp.innerText = '15';
             field.forEach(item => item.classList.remove('active','error'));
             // Заменяем старого босса на нового
             const fireButton = document.querySelector('.comp-field .fire');
@@ -389,6 +500,33 @@ let countUser = document.querySelector('.count-user'),
             document.querySelector('.enemy').setAttribute('src', 'img/enemy2.svg');
             document.querySelector('.comp-text p').innerText = 'Колючий кэткус';
             document.querySelector('body').style.background = '#394D3E';
+        }
+        else if (level == 3) {
+            countU = countC = 20;
+            result.innerText = 'Сделайте выбор';
+            countUser.innerText = '20';
+            countComp.innerText = '20';
+            field.forEach(item => item.classList.remove('active','error'));
+            // Заменяем старого босса на нового
+            const fireButton = document.querySelector('.comp-field .grass');
+            if (fireButton) {
+                fireButton.classList.replace('grass', 'ice');
+                fireButton.setAttribute('data-field', 'i');
+            }
+            document.querySelector('body').style.background = '#2B5B70';
+            let rand = Math.floor(Math.random()*3);
+            console.log("rand =",rand);
+            if (rand == 0) {
+                document.querySelector('.enemy').setAttribute('src', 'img/enemy3-1.svg');
+                document.querySelector('.comp-text p').innerText = 'Ледяной госьт';
+            } else if (rand == 1){
+                document.querySelector('.enemy').setAttribute('src', 'img/enemy3-2.svg');
+                document.querySelector('.comp-text p').innerText = 'Холодные кости';
+            } else if (rand == 2){
+                document.querySelector('.enemy').setAttribute('src', 'img/enemy3-3.svg');
+                document.querySelector('.comp-text p').innerText = 'Морозная кривая';
+            }
+
         }
 
 

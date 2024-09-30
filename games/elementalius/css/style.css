@@ -151,6 +151,9 @@ p, .count{
 .grass {
 	background: url(../img/grass.svg) center no-repeat;
 }
+.ice {
+	background: url(../img/ice.svg) center no-repeat;
+}
 
 @keyframes blink {
 	100% {background-color: green;}
@@ -264,6 +267,9 @@ button {
 	}
 	.grass {
 		background: url(../img/grass-mob.svg) center no-repeat;
+	}
+	.ice {
+		background: url(../img/ice-mob.svg) center no-repeat;
 	}
 
 	p, .count{
