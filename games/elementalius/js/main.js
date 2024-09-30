@@ -11,7 +11,7 @@ let countUser = document.querySelector('.count-user'),
     field = document.querySelectorAll('.field'),
     choice = document.querySelectorAll('.choice'),
     result = document.querySelector('.result'),
-    userStep, userCh, compStep, countU = 10, countC = 1, level = 1, blocked = false, attack = null;
+    userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attack = null;
 
 
     function userAttDef(event) {
@@ -479,14 +479,14 @@ let countUser = document.querySelector('.count-user'),
         });
 
         if (level == 1) {
-            countU = countC = 1;
+            countU = countC = 10;
             result.innerText = 'Сделайте выбор';
             countUser.innerText = '10';
             countComp.innerText = '10';
             field.forEach(item => item.classList.remove('active','error'));
         }
         else if (level == 2) {
-            countU = countC = 1                                                                                                             ;
+            countU = countC = 10;                                                                                                             ;
             result.innerText = 'Сделайте выбор';
             countUser.innerText = '15';
             countComp.innerText = '15';
