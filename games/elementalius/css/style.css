@@ -220,9 +220,13 @@ button {
 }
 
 @media (max-width: 800px) {
+	body {
+		height: 100%;
+	}
+
     .game {
 		max-width: 302px;
-		max-height: 840px;
+		max-height: none;
 		flex-direction: column;
 	}
 
@@ -281,6 +285,10 @@ button {
 
 	.comp-text {
 		order: -1;
+	}
+
+	.h1 {
+		margin: 100px 0;
 	}
 
 }
