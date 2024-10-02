@@ -55,7 +55,7 @@ body {
 
 
 
-.game h1 {
+h1 {
 	font-size: 30px;
 	text-align: center;
 }
@@ -219,6 +219,32 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
+.nav {
+	width: 765px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#rules-icon {
+	cursor: pointer;
+}
+
+#menu-icon {
+	cursor: pointer;
+}
+
+#rules {
+	width: 810px;
+	height: 630px;
+	position: absolute;
+	background: url(../img/rules.png) center;
+	display: none;
+}
+
+.red {
+	filter: brightness(150%);
+}
+
 @media (max-width: 800px) {
 	body {
 		height: 100%;
@@ -289,6 +315,21 @@ button {
 
 	.h1 {
 		margin: 100px 0;
+		font-size: 20px;
 	}
 
+	.nav {
+		width: 350px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	#rules {
+		width: 370px;
+		height: 1215px;
+		position: absolute;
+		background: url(../img/rules-mob.png) center;
+		display: none;
+		top: 80px;
+	}
 }

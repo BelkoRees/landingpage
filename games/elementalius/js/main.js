@@ -540,6 +540,22 @@ let countUser = document.querySelector('.count-user'),
         attack = null;
     }
 
+    // Для работы иконки правил
+    document.getElementById('rules-icon').addEventListener('click', function () {
+        const rules = document.getElementById('rules');
+        const icon = document.getElementById('rules-icon');
+    
+        // Переключение видимости картинки правил
+        if (rules.style.display == 'block') {
+            rules.style.display = 'none'; 
+            icon.classList.remove('red'); // Добавляем фильтр для красного цвета
+        } else {
+            rules.style.display = 'block';
+            icon.classList.add('red'); // Убираем фильтр красного цвета
+        }
+    });
+    
+
     play.addEventListener('click', playGame);
     userChoice.addEventListener('click', userAttDef);
     userField.addEventListener('click', choiceUser);
