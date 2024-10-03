@@ -245,6 +245,52 @@ button {
 	filter: brightness(150%);
 }
 
+.sprite-container {
+	height: 168px;
+	width: 134px;
+	display: flex;
+	align-items: center;
+}
+.sprite-img.hero {
+	height: 168px;
+	width: 134px;
+	background: url(../img/sprite-hero.png) 0px 0px;
+	background-size: 1876px 168px; 
+	animation: play 3s steps(14) infinite; /* Увеличиваем длительность до 2s */
+}
+
+@keyframes play {
+	0% {
+		background-position: 0px; /* Начальная позиция */
+	}
+	60% {
+		background-position: -1876px; /* Конечная позиция до паузы */
+	}
+	100% {
+		background-position: -1876px; /* Оставляем последнюю позицию во время паузы */
+	}
+}
+
+.sprite-img.enemy {
+	height: 168px;
+	width: 134px;
+	background: url(../img/sprite-enemy1.png) 0px 0px;
+	background-size: 1206px 168px; 
+	animation: play2 4s steps(9) infinite; /* Увеличиваем длительность до 2s */
+}
+
+@keyframes play2 {
+	0% {
+		background-position: 0px; /* Начальная позиция */
+	}
+	60% {
+		background-position: -1206px; /* Конечная позиция до паузы */
+	}
+	100% {
+		background-position: -1206px; /* Оставляем последнюю позицию во время паузы */
+	}
+}
+
 @media (max-width: 800px) {
 	body {
 		height: 100%;
