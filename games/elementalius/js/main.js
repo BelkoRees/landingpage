@@ -462,6 +462,11 @@ let countUser = document.querySelector('.count-user'),
     
 
     function playGame() {
+        // Сброс состояния радиокнопок
+        const radioButtons = document.getElementsByName('action');
+        radioButtons.forEach(radio => {
+            radio.checked = false; 
+        });
         // Возвращаем всё на свои места
         document.getElementById('whatdoyouwant').style.display = 'block';
         document.querySelector('label[for="att"]').style.display = 'inline';
@@ -497,7 +502,7 @@ let countUser = document.querySelector('.count-user'),
                 fireButton.classList.replace('fire', 'grass');
                 fireButton.setAttribute('data-field', 'gr');
             }
-            document.querySelector('.enemy').setAttribute('src', 'img/enemy2.svg');
+            document.querySelector('.sprite-img.enemy').classList.replace('enemy', 'enemy2');
             document.querySelector('.comp-text p').innerText = 'Колючий кэткус';
             document.querySelector('body').style.background = '#394D3E';
         }
@@ -513,19 +518,9 @@ let countUser = document.querySelector('.count-user'),
                 fireButton.classList.replace('grass', 'ice');
                 fireButton.setAttribute('data-field', 'i');
             }
+            document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', 'enemy3');
+            document.querySelector('.comp-text p').innerText = 'Совиный призрак';
             document.querySelector('body').style.background = '#2B5B70';
-            let rand = Math.floor(Math.random()*3);
-            console.log("rand =",rand);
-            if (rand == 0) {
-                document.querySelector('.enemy').setAttribute('src', 'img/enemy3-1.svg');
-                document.querySelector('.comp-text p').innerText = 'Ледяной госьт';
-            } else if (rand == 1){
-                document.querySelector('.enemy').setAttribute('src', 'img/enemy3-2.svg');
-                document.querySelector('.comp-text p').innerText = 'Холодные кости';
-            } else if (rand == 2){
-                document.querySelector('.enemy').setAttribute('src', 'img/enemy3-3.svg');
-                document.querySelector('.comp-text p').innerText = 'Морозная кривая';
-            }
 
         }
 
