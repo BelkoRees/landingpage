@@ -172,18 +172,18 @@ p, .count{
 	padding:10px 20px;
 	font-weight: bold;
 	font-size: 16px;
-	box-shadow: 2px 3px 0 #0c4e00;
+	box-shadow: 2px 3px 0 #3f1740;
 	transition:.2s;
 	outline: none;
 }
 .buttons button:hover,
 .buttons button:active {
 	transform:translate(1px,1px);
-	box-shadow: 1px 1px 0 #0c4e00;
+	box-shadow: 1px 1px 0 #511D52;
 }
 
 .play {
-	background: linear-gradient(180deg, #00cb48, #126e01);
+	background: linear-gradient(180deg, #9C369D, #511D52);
 }
 
 .modal {

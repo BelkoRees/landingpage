@@ -395,6 +395,8 @@ let countUser = document.querySelector('.count-user'),
             modalContents.forEach(modalContent => {
                 modalContent.classList.add('bg-loss');
             });
+            modalMessage.style.backgroundColor = '#000000';
+            modalMessage.style.color = '#FFFFFF';
             modalMessage.innerText = 'К сожалению, вы проиграли эту войну';
             // Показываем модальное окно
             modal.style.display = 'flex';
@@ -419,6 +421,8 @@ let countUser = document.querySelector('.count-user'),
                 modalContents.forEach(modalContent => {
                     modalContent.classList.add('bg-win');
                 });
+                modalMessage.style.backgroundColor = '#FFFFFF';
+                modalMessage.style.color = '#000000';
                 modalMessage.innerText = 'Вы выйграли эту войну, поздравляю!';
                 modal.style.display = 'flex';
             
@@ -519,7 +523,7 @@ let countUser = document.querySelector('.count-user'),
                 fireButton.setAttribute('data-field', 'i');
             }
             document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', 'enemy3');
-            document.querySelector('.comp-text p').innerText = 'Совиный призрак';
+            document.querySelector('.comp-text p').innerText = 'Ледокрылый страж';
             document.querySelector('body').style.background = '#2B5B70';
 
         }
@@ -555,6 +559,5 @@ let countUser = document.querySelector('.count-user'),
     userChoice.addEventListener('click', userAttDef);
     userField.addEventListener('click', choiceUser);
     
-
 
 });
