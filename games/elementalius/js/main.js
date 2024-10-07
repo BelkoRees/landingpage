@@ -11,7 +11,7 @@ let countUser = document.querySelector('.count-user'),
     field = document.querySelectorAll('.field'),
     choice = document.querySelectorAll('.choice'),
     result = document.querySelector('.result'),
-    userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attack = null;
+    userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attackMode = null;
 
 
     function userAttDef(event) {
@@ -23,9 +23,9 @@ let countUser = document.querySelector('.count-user'),
     
             // Определяем, атака это или защита
             if (userCh === 'att') {
-                attack = true;
+                attackMode = true;
             } else if (userCh === 'def') {
-                attack = false;
+                attackMode = false;
             }
 
              // Блокируем все радиокнопки
@@ -40,7 +40,7 @@ let countUser = document.querySelector('.count-user'),
         if (blocked) return;
         let target = e.target;
         // Если кликнул по кнопке
-        if (target.classList.contains('field') && attack !== null) {
+        if (target.classList.contains('field') && attackMode !== null) {
             userStep = target.dataset.field;
             field.forEach(item => item.classList.remove('active', 'error'));
             target.classList.add('active');
@@ -68,328 +68,129 @@ let countUser = document.querySelector('.count-user'),
         }, 1000)
     }
 
-    function winner() {
+    // Основные игровые состояния
+    const outcomes = {
+        attack: {
+            // Раунд 1
+            'wg': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'wf': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'gf': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'gw': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'gg': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'wa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'aw': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'ag': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'aa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'af': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'fg': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'fa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'ff': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
+            'fw': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
+            'ww': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
+            'ga': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            // Раунд 2
+            'agr': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'fgr': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'wgr': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
+            'ggr': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
+            // Раунд 3
+            'fi': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'ai': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'gi': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'wi': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' }
+        },
+        defense: {
+            // Раунд 1
+            'wg': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'wf': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'gf': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'gw': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'gg': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'wa': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'aw': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'ag': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'aa': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'af': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'fg': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'fa': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'ww': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            'fw': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            'ff': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            'ga': { message: 'Вы устояли! Враг не нанес вам урона!', damage: 0, sound: 'audio/draw.mp3' },
+            // Раунд 2
+            'grg': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'grw': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'grf': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            'gra': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            // Раунд 3
+            'ig': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'ia': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'if': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            'iw': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+        }
+    };
+
+    // Универсальная функция для обработки победы
+    function processWinner(attackMode) {
         blocked = false;
 
-        let comb;
-        if (attack == true) {
-            comb = userStep + compStep;
-            switch(comb) {
-                case 'ga':
-                    result.innerText = 'Враг устоял! 0 урона';
-                    sound.setAttribute('src', 'audio/draw.mp3');
-                    sound.play();
-                    break;
-                case 'gw':
-                case 'gg':
-                case 'wa':
-                case 'aw':
-                case 'ag':
-                case 'aa':
-                case 'af':
-                case 'fg':
-                case 'fa':
-                    result.innerText = 'Вы нанесли урон!';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC--;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-                case 'wg':
-                case 'wf':
-                case 'gf':
-                    result.innerText = 'Вы нанесли двойной урон!!!';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC -= 2;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-                case 'ww':
-                case 'fw':
-                case 'ff':
-                    result.innerText = 'Вы нанесли лишь половину урона';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC -= 0.5;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
+        // Определяем комбинацию шагов
+        const comb = attackMode ? userStep + compStep : compStep + userStep;
+
+        // Выбираем подходящую конфигурацию (атака или защита)
+        const mode = attackMode ? outcomes.attack : outcomes.defense;
+
+        if (mode[comb]) {
+            const { message, damage, sound } = mode[comb];
+            result.innerText = message;
+            playSound(sound);
+
+            if (attackMode) {
+                // Атака - урон противнику
+                countC -= damage;
+                countComp.innerText = countC;
+                compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
+            } else {
+                // Защита - урон игроку
+                countU -= damage;
+                countUser.innerText = countU;
+                userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
             }
         }
-        else if (attack == false) {
-            comb = compStep + userStep;
-            switch(comb) {
-                case 'ga':
-                    result.innerText = 'Вы устояли! Враг не нанес вам урона!';
-                    sound.setAttribute('src', 'audio/draw.mp3');
-                    sound.play();
-                    break;
-                case 'gw':
-                case 'gg':
-                case 'wa':
-                case 'aw':
-                case 'ag':
-                case 'aa':
-                case 'af':
-                case 'fg':
-                case 'fa':
-                    result.innerText = 'Враг нанес вам урон';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU--;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-                case 'wg':
-                case 'wf':
-                case 'gf':
-                    result.innerText = 'Враг нанес вам двойной урон!!';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU -= 2;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-                case 'ww':
-                case 'fw':
-                case 'ff':
-                    result.innerText = 'Враг нанес только половину урона!';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU -= 0.5;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-        }
-        }
 
-        if (countU <= 0 || countC <= 0)
-            winnerWindow()
-
-        // Автоматически переключаем радиокнопки
+        // Автоматическое переключение радиокнопок
         toggleRadio();
+
+        // Проверка конца раунда
+        if (countU <= 0 || countC <= 0) {
+            winnerWindow();
+        }
+    }
+
+    // Воспроизведение звука
+    function playSound(src) {
+        sound.setAttribute('src', src);
+        sound.play();
+    }
+
+    // Вызов функции в зависимости от режима атаки или защиты
+    function winner() {
+        processWinner(attackMode);
     }
 
     function winner2() {
-        // fire compStep => grass (f => gr)
-        blocked = false;
-
-        let comb;
-        if (attack == true) {
-            comb = userStep + compStep;
-            switch(comb) {
-                case 'ga':
-                    result.innerText = 'Враг устоял! 0 урона';
-                    sound.setAttribute('src', 'audio/draw.mp3');
-                    sound.play();
-                    break;
-                case 'gw':
-                case 'gg':
-                case 'wa':
-                case 'aw':
-                case 'ag':
-                case 'aa':
-                case 'fg':
-                case 'fa':
-                    result.innerText = 'Вы нанесли урон!';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC--;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-                case 'wg':
-                case 'agr':
-                case 'fgr':
-                    result.innerText = 'Вы нанесли двойной урон!!!';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC -= 2;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-                case 'ww':
-                case 'fw':
-                case 'wgr':
-                case 'ggr':
-                    result.innerText = 'Вы нанесли лишь половину урона';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC -= 0.5;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-            }
-        }
-        else if (attack == false) {
-            comb = compStep + userStep;
-            switch(comb) {
-                case 'ga':
-                    result.innerText = 'Вы устояли! Враг не нанес вам урона!';
-                    sound.setAttribute('src', 'audio/draw.mp3');
-                    sound.play();
-                    break;
-                case 'gw':
-                case 'gg':
-                case 'wa':
-                case 'aw':
-                case 'ag':
-                case 'aa':
-                case 'af':
-                    result.innerText = 'Враг нанес вам урон';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU--;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-                case 'wg':
-                case 'wf':
-                case 'gf':
-                case 'grg':
-                case 'grw':
-                    result.innerText = 'Враг нанес вам двойной урон!!';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU -= 2;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-                case 'ww':
-                case 'grf':
-                case 'gra':
-                    result.innerText = 'Враг нанес только половину урона!';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU -= 0.5;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-        }
-        }
-
-        if (countU <= 0 || countC <= 0)
-            winnerWindow()
-
-        // Автоматически переключаем радиокнопки
-        toggleRadio();
+        processWinner(attackMode);
     }
 
     function winner3() {
-        // gr compStep => ice (gr => i)
-        blocked = false;
-
-        let comb;
-        if (attack == true) {
-            comb = userStep + compStep;
-            switch(comb) {
-                case 'ga':
-                    result.innerText = 'Враг устоял! 0 урона';
-                    sound.setAttribute('src', 'audio/draw.mp3');
-                    sound.play();
-                    break;
-                case 'gw':
-                case 'gg':
-                case 'wa':
-                case 'aw':
-                case 'ag':
-                case 'aa':
-                case 'fg':
-                case 'fa':
-                case 'ai':
-                case 'gi':
-                    result.innerText = 'Вы нанесли урон!';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC--;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-                case 'wg':
-                case 'fi':
-                    result.innerText = 'Вы нанесли двойной урон!!!';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC -= 2;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-                case 'ww':
-                case 'fw':
-                case 'wi':
-                    result.innerText = 'Вы нанесли лишь половину урона';
-                    sound.setAttribute('src', 'audio/win.mp3');
-                    sound.play();
-                    countC -= 0.5;
-                    countComp.innerText = countC;
-                    compField.querySelector('[data-field=' + compStep + ']').classList.add('error');
-                    break;
-            }
-        }
-        else if (attack == false) {
-            comb = compStep + userStep;
-            switch(comb) {
-                case 'ga':
-                    result.innerText = 'Вы устояли! Враг не нанес вам урона!';
-                    sound.setAttribute('src', 'audio/draw.mp3');
-                    sound.play();
-                    break;
-                case 'gw':
-                case 'gg':
-                case 'wa':
-                case 'aw':
-                case 'ag':
-                case 'aa':
-                case 'af':
-                    result.innerText = 'Враг нанес вам урон';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU--;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-                case 'wg':
-                case 'wf':
-                case 'gf':
-                case 'ig':
-                case 'ia':
-                    result.innerText = 'Враг нанес вам двойной урон!!';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU -= 2;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-                case 'ww':
-                case 'if':
-                case 'iw':
-                    result.innerText = 'Враг нанес только половину урона!';
-                    sound.setAttribute('src', 'audio/loss.mp3');
-                    sound.play();
-                    countU -= 0.5;
-                    countUser.innerText = countU;
-                    userField.querySelector('[data-field=' + userStep + ']').classList.add('error');
-                    break;
-                }
-        }
-
-        if (countU <= 0 || countC <= 0)
-            winnerWindow()
-
-        // Автоматически переключаем радиокнопки
-        toggleRadio();
+        processWinner(attackMode);
     }
-
 
     function winnerWindow() {
         const modal = document.getElementById('modal');
         const modalMessage = document.getElementById('modal-message');
         const restartButton = document.getElementById('restart-button');
         const modalContents = document.querySelectorAll('.modal-content');
-        console.log('countU =', countU);
-        console.log('countC =', countC);
         // Проверяем, кто выиграл
         if (countU <= 0) {
             modalContents.forEach(modalContent => {
@@ -438,7 +239,7 @@ let countUser = document.querySelector('.count-user'),
 
     function toggleRadio() {
         // Переключаем значения атаки/защиты автоматически
-        attack = !attack;
+        attackMode = !attackMode;
     
         // Элементы для радиокнопок и их метки
         const attackLabel = document.querySelector('label[for="att"]');
@@ -449,7 +250,7 @@ let countUser = document.querySelector('.count-user'),
 
         document.getElementById('whatdoyouwant').style.display = 'none';
 
-        if (attack) {
+        if (attackMode) {
             document.querySelector('#att').checked = true; // Устанавливаем атаку
             attackLabel.style.color = 'white';
             attackLabel.style.display = 'inline';
@@ -464,7 +265,7 @@ let countUser = document.querySelector('.count-user'),
         }
     }
     
-
+/*
     function playGame() {
         // Сброс состояния радиокнопок
         const radioButtons = document.getElementsByName('action');
@@ -528,7 +329,6 @@ let countUser = document.querySelector('.count-user'),
 
         }
 
-
         // Разблокируем радиокнопки при старте новой игры
         choice.forEach(radio => {
             radio.disabled = false;
@@ -536,8 +336,78 @@ let countUser = document.querySelector('.count-user'),
         });
 
         // Сбрасываем значение атаки
-        attack = null;
+        attackMode = null;
     }
+     */
+    
+    const LEVELS = {
+        1: { count: 10, enemyClass: '', enemyText: '', background: '#394D3E' },
+        2: { count: 15, enemyClass: 'enemy2', enemyText: 'Колючий кэткус', background: '#394D3E' },
+        3: { count: 20, enemyClass: 'enemy3', enemyText: 'Ледокрылый страж', background: '#2B5B70' }
+    };
+
+    function updateUIForLevel(level) {
+        const { count, enemyClass, enemyText, background } = LEVELS[level];
+        
+        countU = countC = count;
+        result.innerText = 'Сделайте выбор';
+        countUser.innerText = count;
+        countComp.innerText = count;
+        field.forEach(item => item.classList.remove('active', 'error'));
+    
+        // Обновление врага
+        if (enemyClass == "enemy2") {
+            const fireButton = document.querySelector('.comp-field .fire');
+            fireButton.classList.replace('fire', 'grass');
+            fireButton.setAttribute('data-field', 'gr');
+            document.querySelector('.sprite-img.enemy').classList.replace('enemy', enemyClass);
+            document.querySelector('.comp-text p').innerText = enemyText;
+            document.querySelector('body').style.background = background;
+        }
+        else if (enemyClass == "enemy3") {
+            const grassButton = document.querySelector('.comp-field .grass');
+            grassButton.classList.replace('grass', 'ice');
+            grassButton.setAttribute('data-field', 'i');
+            document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', enemyClass);
+            document.querySelector('.comp-text p').innerText = enemyText;
+            document.querySelector('body').style.background = background;
+        }
+    }
+    
+    function playGame() {
+        // Сброс состояния радиокнопок
+        const radioButtons = document.getElementsByName('action');
+        radioButtons.forEach(radio => radio.checked = false);
+        // Возвращаем всё на свои места
+        document.getElementById('whatdoyouwant').style.display = 'block';
+        document.querySelector('label[for="att"]').style.display = 'inline';
+        document.querySelector('label[for="def"]').style.display = 'inline';
+        document.querySelector('label[for="att"]').innerText = 'Атакуем!';
+        document.querySelector('label[for="def"]').innerText = 'Защищаемся!';
+        document.querySelector('label[for="att"]').style.color = 'white';
+        document.querySelector('label[for="def"]').style.color = 'white';
+        // Чтобы не было бага с неизменяемой картинкой в модуле
+        const modalContents = document.querySelectorAll('.modal-content');
+        modalContents.forEach(modalContent => {
+            modalContent.classList.remove('bg-loss', 'bg-win');
+        });
+    
+        // Обновляем UI в зависимости от уровня
+        if (LEVELS[level]) {
+            updateUIForLevel(level);
+        }
+    
+        // Разблокируем радиокнопки при старте новой игры
+        choice.forEach(radio => {
+            radio.disabled = false;
+            radio.checked = false;
+        });
+    
+        // Сбрасываем значение атаки
+        attackMode = null;
+    }
+    
+
 
     // Для работы иконки правил
     document.getElementById('rules-icon').addEventListener('click', function () {
