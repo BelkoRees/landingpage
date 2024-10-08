@@ -65,6 +65,8 @@ let countUser = document.querySelector('.count-user'),
                 winner2();
             else if (level == 3)
                 winner3();
+            else if (level == 4)
+                winner4();
         }, 1000)
     }
 
@@ -97,7 +99,12 @@ let countUser = document.querySelector('.count-user'),
             'fi': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
             'ai': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'gi': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
-            'wi': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' }
+            'wi': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
+            // Раунд 4
+            'ge': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'we': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'fe': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'ae': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' }
         },
         defense: {
             // Раунд 1
@@ -127,6 +134,11 @@ let countUser = document.querySelector('.count-user'),
             'ia': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'if': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
             'iw': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            // Раунд 4
+            'ew': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'ea': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'ef': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'eg': { message: 'Враг устояли. Вы не нанесли ему урона!', damage: 0, sound: 'audio/draw.mp3' }
         }
     };
 
@@ -186,6 +198,10 @@ let countUser = document.querySelector('.count-user'),
         processWinner(attackMode);
     }
 
+    function winner4() {
+        processWinner(attackMode);
+    }
+
     function winnerWindow() {
         const modal = document.getElementById('modal');
         const modalMessage = document.getElementById('modal-message');
@@ -219,6 +235,10 @@ let countUser = document.querySelector('.count-user'),
                 playGame()
             }
             else if (level == 3) {
+                level++;
+                playGame()
+            }
+            else if (level == 4) {
                 modalContents.forEach(modalContent => {
                     modalContent.classList.add('bg-win');
                 });
@@ -265,85 +285,11 @@ let countUser = document.querySelector('.count-user'),
         }
     }
     
-/*
-    function playGame() {
-        // Сброс состояния радиокнопок
-        const radioButtons = document.getElementsByName('action');
-        radioButtons.forEach(radio => {
-            radio.checked = false; 
-        });
-        // Возвращаем всё на свои места
-        document.getElementById('whatdoyouwant').style.display = 'block';
-        document.querySelector('label[for="att"]').style.display = 'inline';
-        document.querySelector('label[for="def"]').style.display = 'inline';
-        document.querySelector('label[for="att"]').innerText = 'Атакуем!';
-        document.querySelector('label[for="def"]').innerText = 'Защищаемся!';
-        document.querySelector('label[for="att"]').style.color = 'white';
-        document.querySelector('label[for="def"]').style.color = 'white';
-        // Чтобы не было бага с неизменяемой картинкой в модуле
-        document.querySelectorAll('.modal-content').forEach(modalContent => {
-            modalContent.classList.remove('bg-loss');
-        });
-        document.querySelectorAll('.modal-content').forEach(modalContent => {
-            modalContent.classList.remove('bg-win');
-        });
-
-        if (level == 1) {
-            countU = countC = 10;
-            result.innerText = 'Сделайте выбор';
-            countUser.innerText = '10';
-            countComp.innerText = '10';
-            field.forEach(item => item.classList.remove('active','error'));
-        }
-        else if (level == 2) {
-            countU = countC = 15;                                                                                                             ;
-            result.innerText = 'Сделайте выбор';
-            countUser.innerText = '15';
-            countComp.innerText = '15';
-            field.forEach(item => item.classList.remove('active','error'));
-            // Заменяем старого босса на нового
-            const fireButton = document.querySelector('.comp-field .fire');
-            if (fireButton) {
-                fireButton.classList.replace('fire', 'grass');
-                fireButton.setAttribute('data-field', 'gr');
-            }
-            document.querySelector('.sprite-img.enemy').classList.replace('enemy', 'enemy2');
-            document.querySelector('.comp-text p').innerText = 'Колючий кэткус';
-            document.querySelector('body').style.background = '#394D3E';
-        }
-        else if (level == 3) {
-            countU = countC = 20;
-            result.innerText = 'Сделайте выбор';
-            countUser.innerText = '20';
-            countComp.innerText = '20';
-            field.forEach(item => item.classList.remove('active','error'));
-            // Заменяем старого босса на нового
-            const fireButton = document.querySelector('.comp-field .grass');
-            if (fireButton) {
-                fireButton.classList.replace('grass', 'ice');
-                fireButton.setAttribute('data-field', 'i');
-            }
-            document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', 'enemy3');
-            document.querySelector('.comp-text p').innerText = 'Ледокрылый страж';
-            document.querySelector('body').style.background = '#2B5B70';
-
-        }
-
-        // Разблокируем радиокнопки при старте новой игры
-        choice.forEach(radio => {
-            radio.disabled = false;
-            radio.checked = false;
-        });
-
-        // Сбрасываем значение атаки
-        attackMode = null;
-    }
-     */
-    
     const LEVELS = {
         1: { count: 10, enemyClass: '', enemyText: '', background: '#394D3E' },
         2: { count: 15, enemyClass: 'enemy2', enemyText: 'Колючий кэткус', background: '#394D3E' },
-        3: { count: 20, enemyClass: 'enemy3', enemyText: 'Ледокрылый страж', background: '#2B5B70' }
+        3: { count: 20, enemyClass: 'enemy3', enemyText: 'Ледокрылый страж', background: '#2B5B70' },
+        4: { count: 25, enemyClass: 'enemy4', enemyText: 'Электро бишок', background: '#6F702B' }
     };
 
     function updateUIForLevel(level) {
@@ -369,6 +315,14 @@ let countUser = document.querySelector('.count-user'),
             grassButton.classList.replace('grass', 'ice');
             grassButton.setAttribute('data-field', 'i');
             document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', enemyClass);
+            document.querySelector('.comp-text p').innerText = enemyText;
+            document.querySelector('body').style.background = background;
+        }
+        else if (enemyClass == "enemy4") {
+            const grassButton = document.querySelector('.comp-field .ice');
+            grassButton.classList.replace('ice', 'electro');
+            grassButton.setAttribute('data-field', 'e');
+            document.querySelector('.sprite-img.enemy3').classList.replace('enemy3', enemyClass);
             document.querySelector('.comp-text p').innerText = enemyText;
             document.querySelector('body').style.background = background;
         }

@@ -154,6 +154,9 @@ p, .count{
 .ice {
 	background: url(../img/ice.svg) center no-repeat;
 }
+.electro {
+	background: url(../img/electro.svg) center no-repeat;
+}
 
 @keyframes blink {
 	100% {background-color: green;}
@@ -256,7 +259,7 @@ button {
 	width: 134px;
 	background: url(../img/sprite-hero.png) 0px 0px;
 	background-size: 1876px 168px; 
-	animation: play 3s steps(14) infinite; /* Увеличиваем длительность до 2s */
+	animation: play 3s steps(14) infinite; 
 }
 
 @keyframes play {
@@ -276,18 +279,18 @@ button {
 	width: 134px;
 	background: url(../img/sprite-enemy1.png) 0px 0px;
 	background-size: 1206px 168px; 
-	animation: play2 4s steps(9) infinite; /* Увеличиваем длительность до 2s */
+	animation: play2 4s steps(9) infinite; 
 }
 
 @keyframes play2 {
 	0% {
-		background-position: 0px; /* Начальная позиция */
+		background-position: 0px;
 	}
 	60% {
-		background-position: -1206px; /* Конечная позиция до паузы */
+		background-position: -1206px; 
 	}
 	100% {
-		background-position: -1206px; /* Оставляем последнюю позицию во время паузы */
+		background-position: -1206px;
 	}
 }
 
@@ -296,18 +299,18 @@ button {
 	width: 134px;
 	background: url(../img/sprite-enemy2.png) 0px 0px;
 	background-size: 938px 168px; 
-	animation: play3 5s steps(7) infinite; /* Увеличиваем длительность до 2s */
+	animation: play3 5s steps(7) infinite; 
 }
 
 @keyframes play3 {
 	0% {
-		background-position: 0px; /* Начальная позиция */
+		background-position: 0px;
 	}
 	60% {
-		background-position: -938px; /* Конечная позиция до паузы */
+		background-position: -938px; 
 	}
 	100% {
-		background-position: -938px; /* Оставляем последнюю позицию во время паузы */
+		background-position: -938px; 
 	}
 }
 
@@ -316,15 +319,35 @@ button {
 	width: 134px;
 	background: url(../img/sprite-enemy3.png) 0px 0px;
 	background-size: 938px 168px; 
-	animation: play4 1s steps(7) infinite; /* Увеличиваем длительность до 2s */
+	animation: play4 1s steps(7) infinite; 
 }
 
 @keyframes play4 {
 	0% {
-		background-position: 0px; /* Начальная позиция */
+		background-position: 0px; 
 	}
 	100% {
-		background-position: -938px; /* Оставляем последнюю позицию во время паузы */
+		background-position: -938px; 
+	}
+}
+
+.sprite-img.enemy4 {
+	height: 168px;
+	width: 134px;
+	background: url(../img/sprite-enemy4.png) 0px 0px;
+	background-size: 1608px 168px; 
+	animation: play5 5s steps(12) infinite; 
+}
+
+@keyframes play5 {
+	0% {
+		background-position: 0px; 
+	}
+	60% {
+		background-position: -1608px; 
+	}
+	100% {
+		background-position: -1608px;
 	}
 }
 
@@ -383,6 +406,9 @@ button {
 	}
 	.ice {
 		background: url(../img/ice-mob.svg) center no-repeat;
+	}
+	.electro {
+		background: url(../img/electro-mob.svg) center no-repeat;
 	}
 
 	p, .count{
