@@ -157,6 +157,9 @@ p, .count{
 .electro {
 	background: url(../img/electro.svg) center no-repeat;
 }
+.fairy {
+	background: url(../img/fairy.svg) center no-repeat;
+}
 
 @keyframes blink {
 	100% {background-color: green;}
@@ -351,6 +354,26 @@ button {
 	}
 }
 
+.sprite-img.enemy5 {
+	height: 168px;
+	width: 134px;
+	background: url(../img/sprite-enemy5.png) 0px 0px;
+	background-size: 1072px 168px; 
+	animation: play6 5s steps(8) infinite; 
+}
+
+@keyframes play6 {
+	0% {
+		background-position: 0px; 
+	}
+	60% {
+		background-position: -1072px; 
+	}
+	100% {
+		background-position: -1072px;
+	}
+}
+
 @media (max-width: 800px) {
 	body {
 		height: 100%;
@@ -409,6 +432,9 @@ button {
 	}
 	.electro {
 		background: url(../img/electro-mob.svg) center no-repeat;
+	}
+	.fairy {
+		background: url(../img/fairy-mob.svg) center no-repeat;
 	}
 
 	p, .count{

@@ -67,6 +67,8 @@ let countUser = document.querySelector('.count-user'),
                 winner3();
             else if (level == 4)
                 winner4();
+            else if (level == 5)
+                winner5();
         }, 1000)
     }
 
@@ -104,7 +106,12 @@ let countUser = document.querySelector('.count-user'),
             'ge': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
             'we': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'fe': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
-            'ae': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' }
+            'ae': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
+            // Раунд 5
+            'gfa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'wfa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'ffa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'afa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' }
         },
         defense: {
             // Раунд 1
@@ -138,7 +145,12 @@ let countUser = document.querySelector('.count-user'),
             'ew': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'ea': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'ef': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
-            'eg': { message: 'Враг устояли. Вы не нанесли ему урона!', damage: 0, sound: 'audio/draw.mp3' }
+            'eg': { message: 'Враг устояли. Вы не нанесли ему урона!', damage: 0, sound: 'audio/draw.mp3' },
+            // Раунд 5
+            'faw': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'fag': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'faa': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'faf': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' }
         }
     };
 
@@ -202,6 +214,10 @@ let countUser = document.querySelector('.count-user'),
         processWinner(attackMode);
     }
 
+    function winner5() {
+        processWinner(attackMode);
+    }
+
     function winnerWindow() {
         const modal = document.getElementById('modal');
         const modalMessage = document.getElementById('modal-message');
@@ -239,6 +255,10 @@ let countUser = document.querySelector('.count-user'),
                 playGame()
             }
             else if (level == 4) {
+                level++;
+                playGame()
+            }
+            else if (level == 5) {
                 modalContents.forEach(modalContent => {
                     modalContent.classList.add('bg-win');
                 });
@@ -289,7 +309,8 @@ let countUser = document.querySelector('.count-user'),
         1: { count: 10, enemyClass: '', enemyText: '', background: '#394D3E' },
         2: { count: 15, enemyClass: 'enemy2', enemyText: 'Колючий кэткус', background: '#394D3E' },
         3: { count: 20, enemyClass: 'enemy3', enemyText: 'Ледокрылый страж', background: '#2B5B70' },
-        4: { count: 25, enemyClass: 'enemy4', enemyText: 'Электро бишок', background: '#6F702B' }
+        4: { count: 25, enemyClass: 'enemy4', enemyText: 'Электро бишок', background: '#6F702B' },
+        5: { count: 30, enemyClass: 'enemy5', enemyText: 'Фейная зая', background: '#634B3B' }
     };
 
     function updateUIForLevel(level) {
@@ -323,6 +344,14 @@ let countUser = document.querySelector('.count-user'),
             grassButton.classList.replace('ice', 'electro');
             grassButton.setAttribute('data-field', 'e');
             document.querySelector('.sprite-img.enemy3').classList.replace('enemy3', enemyClass);
+            document.querySelector('.comp-text p').innerText = enemyText;
+            document.querySelector('body').style.background = background;
+        }
+        else if (enemyClass == "enemy5") {
+            const grassButton = document.querySelector('.comp-field .electro');
+            grassButton.classList.replace('electro', 'fairy');
+            grassButton.setAttribute('data-field', 'fa');
+            document.querySelector('.sprite-img.enemy4').classList.replace('enemy4', enemyClass);
             document.querySelector('.comp-text p').innerText = enemyText;
             document.querySelector('body').style.background = background;
         }
