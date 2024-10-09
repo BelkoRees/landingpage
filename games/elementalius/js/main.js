@@ -308,7 +308,7 @@ let countUser = document.querySelector('.count-user'),
     const LEVELS = {
         1: { count: 10, enemyClass: '', enemyText: '', background: '#394D3E' },
         2: { count: 15, enemyClass: 'enemy2', enemyText: 'Колючий кэткус', background: '#394D3E' },
-        3: { count: 20, enemyClass: 'enemy3', enemyText: 'Ледокрылый страж', background: '#2B5B70' },
+        3: { count: 20, enemyClass: 'enemy3', enemyText: 'Ледокрылый буб', background: '#2B5B70' },
         4: { count: 25, enemyClass: 'enemy4', enemyText: 'Электро бишок', background: '#6F702B' },
         5: { count: 30, enemyClass: 'enemy5', enemyText: 'Фейная зая', background: '#634B3B' }
     };
