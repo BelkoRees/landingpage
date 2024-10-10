@@ -374,6 +374,50 @@ button {
 	}
 }
 
+.typewriter {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+    background-color: #393B48;
+    font-size: 20px;
+    display: inline-block;
+}
+
+#typing-text {
+	height: 100%;
+	width: 100%;
+	border: none;
+}
+
+#hide-button {
+	padding:20px 15px;
+	text-align: center;
+	margin: 0 8px;
+	cursor:pointer;
+	border:none;
+	border-radius:30px;
+	color:#fff;
+	text-transform: uppercase;
+	padding:10px 20px;
+	font-weight: bold;
+	font-size: 16px;
+	box-shadow: 2px 3px 0 #3f1740;
+	transition:.2s;
+	outline: none;
+	background: linear-gradient(180deg, #9C369D, #511D52);
+	position: absolute;
+}
+
+#hide-button:hover,
+#hide-button:active {
+	transform:translate(1px,1px);
+	box-shadow: 1px 1px 0 #511D52;
+}
+
+
+
+
+
 @media (max-width: 800px) {
 	body {
 		height: 100%;

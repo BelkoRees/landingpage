@@ -1,3 +1,77 @@
+function copySize() {
+    const div1 = document.getElementsByClassName('game')[0]; // Исходный элемент
+    const div2 = document.getElementsByClassName('typewriter')[0]; // Целевой элемент
+    
+    // Получаем высоту и ширину div1
+    const width = div1.offsetWidth;
+    const height = div1.offsetHeight;
+
+    // Получаем позицию (отступы) div1
+    const top = div1.offsetTop;
+    const left = div1.offsetLeft;
+    
+    // Присваиваем размеры div2
+    div2.style.width = width + 'px';
+    div2.style.height = height + 'px';
+    
+    // Присваиваем позицию div2
+    div2.style.position = 'absolute'; // Убедитесь, что position установлен в absolute или relative
+    div2.style.top = top + 'px';
+    div2.style.left = left - 1 + 'px';
+}
+
+function typeWriter(text, elementId, speed, callback) {
+    let i = 0;
+    const element = document.getElementById(elementId);
+    const cursor = document.createElement('span');
+    cursor.classList.add('blinking-cursor');
+    element.appendChild(cursor); // Добавляем курсор
+
+    function type() {
+        if (i < text.length) {
+            element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+            i++;
+            setTimeout(type, speed); // Задержка между символами
+        } else {
+            cursor.remove(); // Удаляем курсор после завершения печати
+            if (callback) callback(); // Вызываем callback после завершения
+        }
+    }
+    type();
+}
+
+// Функция для скрытия блока .typewriter и кнопки
+function hideTypewriter() {
+    const typewriter = document.querySelector('.typewriter');
+    const hideButton = document.getElementById('hide-button');
+    const playButton = document.querySelector('.play');
+    
+    // Скрываем блок и кнопку
+    typewriter.style.display = 'none';
+    hideButton.style.display = 'none';
+    
+    // Показываем кнопку play
+    playButton.style.display = 'block'; 
+}
+
+// Запускаем печать текста при загрузке страницы
+window.onload = function() {
+    copySize();
+    const text = "Привет! Теперь ты маг стихий, поздравляю. Но вот незадача... Ты случайно оказываешься заперт в мистическом лабиринте древнего храма, где тебя ждут пять опасных противников. Кто-то привел тебя сюда, чтобы спасти мир от надвигающейся катастрофы, заполучив пять недостающих стихийных камней. Ты должен победить этих врагов, используя свою уникальную способность управлять четырьмя стихиями: огонь, вода, земля и воздух.";
+    
+    // Выводим текст с анимацией
+    typeWriter(text, 'typing-text', 10, function() {
+        // Показываем кнопку после завершения печати
+        document.getElementById('hide-button').style.display = 'block';
+    });
+
+    // Добавляем событие для скрытия блока и кнопки по нажатию
+    document.getElementById('hide-button').addEventListener('click', function() {
+        hideTypewriter();
+    });
+};
+
+
 window.addEventListener('load',function () {
 
 
@@ -13,6 +87,61 @@ let countUser = document.querySelector('.count-user'),
     result = document.querySelector('.result'),
     userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attackMode = null;
 
+    function copySize() {
+        const div1 = document.getElementsByClassName('game')[0]; // Исходный элемент
+        const div2 = document.getElementsByClassName('typewriter')[0]; // Целевой элемент
+        
+        // Получаем высоту и ширину div1
+        const width = div1.offsetWidth;
+        const height = div1.offsetHeight;
+    
+        // Получаем позицию (отступы) div1
+        const top = div1.offsetTop;
+        const left = div1.offsetLeft;
+        
+        // Присваиваем размеры div2
+        div2.style.width = width + 'px';
+        div2.style.height = height + 'px';
+        
+        // Присваиваем позицию div2
+        div2.style.position = 'absolute'; // Убедитесь, что position установлен в absolute или relative
+        div2.style.top = top + 'px';
+        div2.style.left = left - 1 + 'px';
+    }
+    
+    function typeWriter(text, elementId, speed, callback) {
+        let i = 0;
+        const element = document.getElementById(elementId);
+        const cursor = document.createElement('span');
+        cursor.classList.add('blinking-cursor');
+        element.appendChild(cursor); // Добавляем курсор
+    
+        function type() {
+            if (i < text.length) {
+                element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+                i++;
+                setTimeout(type, speed); // Задержка между символами
+            } else {
+                cursor.remove(); // Удаляем курсор после завершения печати
+                if (callback) callback(); // Вызываем callback после завершения
+            }
+        }
+        type();
+    }
+    
+    // Функция для скрытия блока .typewriter и кнопки
+    function hideTypewriter() {
+        const typewriter = document.querySelector('.typewriter');
+        const hideButton = document.getElementById('hide-button');
+        const playButton = document.querySelector('.play');
+        
+        // Скрываем блок и кнопку
+        typewriter.style.display = 'none';
+        hideButton.style.display = 'none';
+        
+        // Показываем кнопку play
+        playButton.style.display = 'block'; 
+    }
 
     function userAttDef(event) {
         let target = event.target;
@@ -244,6 +373,25 @@ let countUser = document.querySelector('.count-user'),
         } else if (countC <= 0) {
             if (level == 1) {
                 level++;
+
+                document.getElementById('typing-text').textContent = '';
+                const text = "Ты победил Чернушку, молодец!";
+                document.getElementsByClassName('typewriter')[0].style.display = 'block';
+                document.getElementsByClassName('typewriter')[0].style.background = '#394D3E';
+                document.getElementsByClassName('play')[0].style.display = 'none';
+                copySize();
+                // Выводим текст с анимацией
+                typeWriter(text, 'typing-text', 10, function() {
+
+                    // Показываем кнопку после завершения печати
+                    document.getElementById('hide-button').style.display = 'block';
+                });
+
+                // Добавляем событие для скрытия блока и кнопки по нажатию
+                document.getElementById('hide-button').addEventListener('click', function() {
+                    hideTypewriter();
+                });
+
                 playGame()
             }
             else if (level == 2) {
@@ -390,8 +538,6 @@ let countUser = document.querySelector('.count-user'),
         attackMode = null;
     }
     
-
-
     // Для работы иконки правил
     document.getElementById('rules-icon').addEventListener('click', function () {
         const rules = document.getElementById('rules');
@@ -406,11 +552,9 @@ let countUser = document.querySelector('.count-user'),
             icon.classList.add('red'); // Убираем фильтр красного цвета
         }
     });
-    
 
     play.addEventListener('click', playGame);
     userChoice.addEventListener('click', userAttDef);
     userField.addEventListener('click', choiceUser);
     
-
 });
