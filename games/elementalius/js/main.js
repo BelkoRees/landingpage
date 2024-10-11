@@ -54,6 +54,18 @@ function hideTypewriter() {
     playButton.style.display = 'block'; 
 }
 
+let rulesShown = false; // Изначально правила не показаны
+function showRulesOnce() {
+    if (!rulesShown) { // Если правила ещё не были показаны
+        // Открываем блок с правилами
+        document.getElementById('rules').style.display = 'block';
+        document.getElementById('rules-icon').classList.add('red');
+        
+        rulesShown = true; // Устанавливаем флаг в true, чтобы код не выполнялся снова
+    }
+}
+
+
 // Запускаем печать текста при загрузке страницы
 window.onload = function() {
     copySize();
@@ -68,6 +80,7 @@ window.onload = function() {
     // Добавляем событие для скрытия блока и кнопки по нажатию
     document.getElementById('hide-button').addEventListener('click', function() {
         hideTypewriter();
+        showRulesOnce()
     });
 };
 
@@ -221,26 +234,34 @@ let countUser = document.querySelector('.count-user'),
             'fw': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
             'ww': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
             'ga': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
-            // Раунд 2
+            // Раунд 2 (w => s, f => gr)
             'agr': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
             'fgr': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
             'wgr': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
             'ggr': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
-            // Раунд 3
+            'ws': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'as': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'gs': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            'fs': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            // Раунд 3 (s => gh, gr => i)
             'fi': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
             'ai': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'gi': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'wi': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
-            // Раунд 4
+            'agh': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'fgh': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
+            'wgh': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            'ggh': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            // Раунд 4 (gh => a, g => e, i => e)
             'ge': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
             'we': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'fe': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'ae': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
-            // Раунд 5
-            'gfa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
-            'wfa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
-            'ffa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
-            'afa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' }
+            // Раунд 5 (a(1) => f, e(1) => g, e(2) => fa)
+            'wfa': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'gfa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            'ffa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            'afa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' }
         },
         defense: {
             // Раунд 1
@@ -260,26 +281,34 @@ let countUser = document.querySelector('.count-user'),
             'fw': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
             'ff': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
             'ga': { message: 'Вы устояли! Враг не нанес вам урона!', damage: 0, sound: 'audio/draw.mp3' },
-            // Раунд 2
+            // Раунд 2 (w => s, f => gr)
             'grg': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'grw': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'grf': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
             'gra': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
-            // Раунд 3
+            'sa': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'sf': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'sw': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
+            'sg': { message: 'Вы устояли! Враг не нанес вам урона!', damage: 0, sound: 'audio/draw.mp3' },
+            // Раунд 3 (s => gh, gr => i)
             'ig': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'ia': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'if': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
             'iw': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' },
-            // Раунд 4
+            'ghw': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'ghg': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'fgh': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
+            'agh': { message: 'Вы устояли! Враг не нанес вам урона!', damage: 0, sound: 'audio/draw.mp3' },
+            // Раунд 4 (gh => a, g => e, i => e)
             'ew': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'ea': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'ef': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
             'eg': { message: 'Враг устояли. Вы не нанесли ему урона!', damage: 0, sound: 'audio/draw.mp3' },
-            // Раунд 5
-            'faw': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
-            'fag': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
-            'faa': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
-            'faf': { message: 'Враг нанес только половину урона', damage: 0.5, sound: 'audio/loss.mp3' }
+            // Раунд 5 (a(1) => f, e(1) => g, e(2) => fa)
+            'faw': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'fag': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'faa': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
+            'faf': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' }
         }
     };
 
@@ -352,77 +381,189 @@ let countUser = document.querySelector('.count-user'),
         const modalMessage = document.getElementById('modal-message');
         const restartButton = document.getElementById('restart-button');
         const modalContents = document.querySelectorAll('.modal-content');
-        // Проверяем, кто выиграл
-        if (countU <= 0) {
-            modalContents.forEach(modalContent => {
-                modalContent.classList.add('bg-loss');
-            });
+    
+        // Функция для перезапуска игры
+        const restartGame = () => {
+            modal.style.display = 'none';
+            window.location.reload();
+        };
+    
+        // Функция для обработки проигрыша
+        const showLoss = () => {
+            modalContents.forEach(modalContent => modalContent.classList.add('bg-loss'));
             modalMessage.style.backgroundColor = '#000000';
             modalMessage.style.color = '#FFFFFF';
             modalMessage.innerText = 'К сожалению, вы проиграли эту войну';
-            // Показываем модальное окно
             modal.style.display = 'flex';
-
-            // Кнопка для перезапуска игры
-            restartButton.addEventListener('click', function() {
-                // Скрываем модальное окно и перезапускаем игру
-                modal.style.display = 'none';
-                window.location.reload(); // Перезапускаем игру
+            restartButton.addEventListener('click', restartGame);
+        };
+    
+        // Функция для показа модального окна в случае победы
+        const showWin = (text) => {
+            modalContents.forEach(modalContent => modalContent.classList.add('bg-win'));
+            modalMessage.style.backgroundColor = '#FFFFFF';
+            modalMessage.style.color = '#000000';
+            modalMessage.innerText = 'Вы выбрались из лабиринта живым, поздравляю!';
+            modal.style.display = 'flex';
+            restartButton.addEventListener('click', restartGame);
+        };
+    
+        // Функция для отображения текста с анимацией
+        const displayTextWithAnimation = (text, backgroundColor, callback) => {
+            document.getElementById('typing-text').textContent = '';
+            document.getElementsByClassName('typewriter')[0].style.display = 'block';
+            document.getElementsByClassName('typewriter')[0].style.background = backgroundColor;
+            document.getElementsByClassName('play')[0].style.display = 'none';
+            copySize();
+            typeWriter(text, 'typing-text', 10, () => {
+                callback();
             });
-            
+        };
+
+        // Получаем элемент кнопки
+        const hideButton = document.getElementById('hide-button');
+    
+        // Проверка на победу или поражение
+        if (countU <= 0) {
+            showLoss();
         } else if (countC <= 0) {
-            if (level == 1) {
-                level++;
+            // Обработка уровней
+            switch (level) {
+                case 1:
+                    level++;
 
-                document.getElementById('typing-text').textContent = '';
-                const text = "Ты победил Чернушку, молодец!";
-                document.getElementsByClassName('typewriter')[0].style.display = 'block';
-                document.getElementsByClassName('typewriter')[0].style.background = '#394D3E';
-                document.getElementsByClassName('play')[0].style.display = 'none';
-                copySize();
-                // Выводим текст с анимацией
-                typeWriter(text, 'typing-text', 10, function() {
+                    // Скрываем кнопку перед запуском первой анимации
+                    hideButton.style.display = "none";
+                    
+                    // Запускаем первую анимацию и передаем callback для запуска второй анимации после завершения первой
+                    displayTextWithAnimation(
+                        "Противник, которого ты сейчас одолел — таинственная черная материя. Она владела темной магией копирования способностей противников и охраняла камень тьмы у входа в лабиринт. Теперь он твой и ты, внезапно для себя, получаешь способность копировать здоровье противников в начале битвы, поздравляю!",
+                        '#393B48',
+                        () => {
+                            // Временная задержка перед запуском второй анимации 
+                            setTimeout(() => {
+                                displayTextWithAnimation(
+                                    "Ты идешь прямо, и немного подсмотрев из-за угла, видишь своего следующего противника...",
+                                    '#394D3E',
+                                    () => {
+                                        hideButton.innerHTML = "Продолжить";
+                                        // После завершения второй анимации разблокируем кнопку
+                                        hideButton.style.display = "block";
+                                        // После завершения второй анимации добавляем обработчик для hide-button
+                                        document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        playGame();
+                                    }
+                                );
+                            }, 9000);
+                        }
+                    );
+                
+                    break;
+                           
+    
+                case 2:
+                    level++;
 
-                    // Показываем кнопку после завершения печати
-                    document.getElementById('hide-button').style.display = 'block';
-                });
+                    hideButton.style.display = "none";
+                    displayTextWithAnimation(
+                        "Второй побежденный тобой противник был ожившим кактусом в форме котенка. Он защищал пустынный оазис от непрошенных гостей. Кажется, он атаковал тебя с помощью своей стихии растений и вызывал песчаные бури. Помимо своей колючести, Кэткус также хитёр и любил периодически прятаться за защитными барьерами из земли. За его горшком ты находишь камень жизни.",
+                        '#394D3E',
+                        () => {
+                            setTimeout(() => {
+                                displayTextWithAnimation(
+                                    "После знойного оазиса ты проходишь в комнату дальше по лабиринту. Это большое пространство с кучей полок и миллионами различных книг и свитков. Только почему-то здесь подозрительно холодно...",
+                                    '#2B5B70',
+                                    () => {
+                                        hideButton.innerHTML = "Обернуться";
+                                        hideButton.style.display = "block";
+                                        document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        playGame();
+                                    }
+                                );
+                            }, 12000);
+                        }
+                    );
+                
+                    break;
+    
+                case 3:
+                    level++;
+                    hideButton.style.display = "none";
+                    displayTextWithAnimation(
+                        "Из упавшей с полки книги, ты узнаешь, что твоим третьим врагом был Совиный Призрак, древнее существо, которое давно умерло, но его дух охраняет библиотеку утерянных знаний. Совиный Призрак использует ледяные ветра и призрачные силы, чтобы защитить камень смерти и замораживать всех противников. Порыскавши по полкам, за одной из книг ты находишь камень смерти.",
+                        '#2B5B70',
+                        () => {
+                            setTimeout(() => {
+                                displayTextWithAnimation(
+                                    "Из книги ты уже узнал, кто будет твоим следующим противником, поэтому воду при защите и атаке наверное лучше не использовать...",
+                                    '#6F702B',
+                                    () => {
+                                        hideButton.innerHTML = "В бой!";
+                                        hideButton.style.display = "block";
+                                        document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        playGame();
+                                    }
+                                );
+                            }, 12000);
+                        }
+                    );
+                
+                    break;
+    
+                case 4:
+                    level++;
+                    hideButton.style.display = "none";
+                    displayTextWithAnimation(
+                        "Тебе с трудом, но удается победить! Это сильно заряжает тебя энергией на последний бой, удачи!",
+                        '#6F702B',
+                        () => {
+                            setTimeout(() => {
+                                displayTextWithAnimation(
+                                    "Последний и самый опасный противник. Это обычная зайка, которая каким-то образом получила силу фей и стала охранять стихийный камень света. Она использует магию фей и не настроена враждебно, но ради защиты камня, пойдет на всё! Ой, кажется она что-то сделала с твоей силой...",
+                                    '#634B3B',
+                                    () => {
+                                        hideButton.innerHTML = "Страшно, но я справлюсь!";
+                                        hideButton.style.display = "block";
+                                        document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        playGame();
+                                    }
+                                );
+                            }, 5000);
+                        }
+                    );
+                
+                    break;
+    
+                case 5:
+                    level++;
+                    hideButton.style.display = "none";
+                    displayTextWithAnimation(
+                        "Это невероятно, но тебе удалось одолеть всех пятерых противников и все нужные камни у тебя! Что будешь делать дальше?",
+                        '#634B3B',
+                        () => {
+                            setTimeout(() => {
+                                displayTextWithAnimation(
+                                    "Я тебе подскажу: напиши автору этой игры, что тебе больше всего понравилось и что стоит изменить. Я уверен, он это оценит!",
+                                    '#634B3B',
+                                    () => {
+                                        hideButton.disabled = false;
+                                        document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        //playGame();
+                                        showWin();
+                                    }
+                                );
+                            }, 5000);
+                        }
+                    );
 
-                // Добавляем событие для скрытия блока и кнопки по нажатию
-                document.getElementById('hide-button').addEventListener('click', function() {
-                    hideTypewriter();
-                });
+                    break;
 
-                playGame()
-            }
-            else if (level == 2) {
-                level++;
-                playGame()
-            }
-            else if (level == 3) {
-                level++;
-                playGame()
-            }
-            else if (level == 4) {
-                level++;
-                playGame()
-            }
-            else if (level == 5) {
-                modalContents.forEach(modalContent => {
-                    modalContent.classList.add('bg-win');
-                });
-                modalMessage.style.backgroundColor = '#FFFFFF';
-                modalMessage.style.color = '#000000';
-                modalMessage.innerText = 'Вы выйграли эту войну, поздравляю!';
-                modal.style.display = 'flex';
-            
-                // Кнопка для перезапуска игры
-                restartButton.addEventListener('click', function() {
-                    modal.style.display = 'none';
-                    window.location.reload();
-                });
+                default:
+                    break;
             }
         }
     }
+    
     
 
     function toggleRadio() {
@@ -465,6 +606,7 @@ let countUser = document.querySelector('.count-user'),
         const { count, enemyClass, enemyText, background } = LEVELS[level];
         
         countU = countC = count;
+        countC = 1;
         result.innerText = 'Сделайте выбор';
         countUser.innerText = count;
         countComp.innerText = count;
@@ -473,32 +615,50 @@ let countUser = document.querySelector('.count-user'),
         // Обновление врага
         if (enemyClass == "enemy2") {
             const fireButton = document.querySelector('.comp-field .fire');
+            const waterButton = document.querySelector('.comp-field .water');
             fireButton.classList.replace('fire', 'grass');
             fireButton.setAttribute('data-field', 'gr');
+            waterButton.classList.replace('water', 'sand');
+            waterButton.setAttribute('data-field', 's');
             document.querySelector('.sprite-img.enemy').classList.replace('enemy', enemyClass);
             document.querySelector('.comp-text p').innerText = enemyText;
             document.querySelector('body').style.background = background;
         }
         else if (enemyClass == "enemy3") {
             const grassButton = document.querySelector('.comp-field .grass');
+            const sandButton = document.querySelector('.comp-field .sand');
             grassButton.classList.replace('grass', 'ice');
             grassButton.setAttribute('data-field', 'i');
+            sandButton.classList.replace('sand', 'ghost');
+            sandButton.setAttribute('data-field', 'gh');
             document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', enemyClass);
             document.querySelector('.comp-text p').innerText = enemyText;
             document.querySelector('body').style.background = background;
         }
         else if (enemyClass == "enemy4") {
-            const grassButton = document.querySelector('.comp-field .ice');
-            grassButton.classList.replace('ice', 'electro');
-            grassButton.setAttribute('data-field', 'e');
+            const iceButton = document.querySelector('.comp-field .ice');
+            const groundButton = document.querySelector('.comp-field .ground');
+            const ghostButton = document.querySelector('.comp-field .ghost');
+            iceButton.classList.replace('ice', 'electro1');
+            iceButton.setAttribute('data-field', 'e');
+            ghostButton.classList.replace('ghost', 'air1');
+            ghostButton.setAttribute('data-field', 'a');
+            groundButton.classList.replace('ground', 'electro2');
+            groundButton.setAttribute('data-field', 'e');
             document.querySelector('.sprite-img.enemy3').classList.replace('enemy3', enemyClass);
             document.querySelector('.comp-text p').innerText = enemyText;
             document.querySelector('body').style.background = background;
         }
         else if (enemyClass == "enemy5") {
-            const grassButton = document.querySelector('.comp-field .electro');
-            grassButton.classList.replace('electro', 'fairy');
-            grassButton.setAttribute('data-field', 'fa');
+            const electro1Button = document.querySelector('.comp-field .electro1');
+            const electro2Button = document.querySelector('.comp-field .electro2');
+            const air1Button = document.querySelector('.comp-field .air1');
+            electro2Button.classList.replace('electro2', 'fairy');
+            electro2Button.setAttribute('data-field', 'fa');
+            electro1Button.classList.replace('electro1', 'ground');
+            electro1Button.setAttribute('data-field', 'g');
+            air1Button.classList.replace('air1', 'fire');
+            air1Button.setAttribute('data-field', 'f');
             document.querySelector('.sprite-img.enemy4').classList.replace('enemy4', enemyClass);
             document.querySelector('.comp-text p').innerText = enemyText;
             document.querySelector('body').style.background = background;
@@ -546,10 +706,10 @@ let countUser = document.querySelector('.count-user'),
         // Переключение видимости картинки правил
         if (rules.style.display == 'block') {
             rules.style.display = 'none'; 
-            icon.classList.remove('red'); // Добавляем фильтр для красного цвета
+            icon.classList.remove('red'); 
         } else {
             rules.style.display = 'block';
-            icon.classList.add('red'); // Убираем фильтр красного цвета
+            icon.classList.add('red'); 
         }
     });
 

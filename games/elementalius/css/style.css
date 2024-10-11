@@ -142,7 +142,7 @@ p, .count{
 .ground {
 	background: url(../img/ground.svg) center no-repeat;
 }
-.air {
+.air, .air1 {
 	background: url(../img/air.svg) center no-repeat;
 }
 .fire {
@@ -154,12 +154,19 @@ p, .count{
 .ice {
 	background: url(../img/ice.svg) center no-repeat;
 }
-.electro {
+.electro1, .electro2  {
 	background: url(../img/electro.svg) center no-repeat;
 }
 .fairy {
 	background: url(../img/fairy.svg) center no-repeat;
 }
+.sand {
+	background: url(../img/sand.svg) center no-repeat;
+}
+.ghost {
+	background: url(../img/ghost.svg) center no-repeat;
+}
+
 
 @keyframes blink {
 	100% {background-color: green;}
@@ -462,7 +469,7 @@ button {
 	.ground {
 		background: url(../img/ground-mob.svg) center no-repeat;
 	}
-	.air {
+	.air, .air1 {
 		background: url(../img/air-mob.svg) center no-repeat;
 	}
 	.fire {
@@ -474,11 +481,17 @@ button {
 	.ice {
 		background: url(../img/ice-mob.svg) center no-repeat;
 	}
-	.electro {
+	.electro1, .electro2 {
 		background: url(../img/electro-mob.svg) center no-repeat;
 	}
 	.fairy {
 		background: url(../img/fairy-mob.svg) center no-repeat;
+	}
+	.sand {
+		background: url(../img/sand-mob.svg) center no-repeat;
+	}
+	.ghost {
+		background: url(../img/ghost-mob.svg) center no-repeat;
 	}
 
 	p, .count{
