@@ -606,7 +606,6 @@ let countUser = document.querySelector('.count-user'),
         const { count, enemyClass, enemyText, background } = LEVELS[level];
         
         countU = countC = count;
-        countC = 1;
         result.innerText = 'Сделайте выбор';
         countUser.innerText = count;
         countComp.innerText = count;
