@@ -17,7 +17,13 @@ function copySize() {
     // Присваиваем позицию div2
     div2.style.position = 'absolute'; // Убедитесь, что position установлен в absolute или relative
     div2.style.top = top + 'px';
-    div2.style.left = left - 1 + 'px';
+    if (window.innerWidth <= 800) {
+        // Для мобильных устройств
+        div2.style.left = left + 'px';
+    } else {
+        // Для компьютерных экранов
+        div2.style.left = left - 1 + 'px';
+    }
 }
 
 function typeWriter(text, elementId, speed, callback) {
@@ -119,7 +125,13 @@ let countUser = document.querySelector('.count-user'),
         // Присваиваем позицию div2
         div2.style.position = 'absolute'; // Убедитесь, что position установлен в absolute или relative
         div2.style.top = top + 'px';
-        div2.style.left = left - 1 + 'px';
+        if (window.innerWidth <= 800) {
+            // Для мобильных устройств
+            div2.style.left = left + 'px';
+        } else {
+            // Для компьютерных экранов
+            div2.style.left = left - 1 + 'px';
+        }
     }
     
     function typeWriter(text, elementId, speed, callback) {
@@ -258,9 +270,9 @@ let countUser = document.querySelector('.count-user'),
             'fe': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'ae': { message: 'Вы нанесли половину урона', damage: 0.5, sound: 'audio/win.mp3' },
             // Раунд 5 (a(1) => f, e(1) => g, e(2) => fa)
-            'wfa': { message: 'Вы нанесли двойной урон!!!', damage: 2, sound: 'audio/win.mp3' },
+            'wfa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'gfa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
-            'ffa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
+            'ffa': { message: 'Ваш огненный удар был отражен! К сожалению, вы не успели увернуться', damage: -2, sound: 'audio/loss.mp3' },
             'afa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' }
         },
         defense: {
@@ -303,7 +315,7 @@ let countUser = document.querySelector('.count-user'),
             'ew': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'ea': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'ef': { message: 'Враг нанес вам урон', damage: 1, sound: 'audio/loss.mp3' },
-            'eg': { message: 'Враг устояли. Вы не нанесли ему урона!', damage: 0, sound: 'audio/draw.mp3' },
+            'eg': { message: 'Вы устояли! Враг не нанес вам урона!', damage: 0, sound: 'audio/draw.mp3' },
             // Раунд 5 (a(1) => f, e(1) => g, e(2) => fa)
             'faw': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
             'fag': { message: 'Враг нанес вам двойной урон!', damage: 2, sound: 'audio/loss.mp3' },
@@ -548,7 +560,6 @@ let countUser = document.querySelector('.count-user'),
                                     () => {
                                         hideButton.disabled = false;
                                         document.getElementById('hide-button').addEventListener('click', hideTypewriter);
-                                        //playGame();
                                         showWin();
                                     }
                                 );
