@@ -221,11 +221,22 @@ p, .count{
 }
 
 .bg-win {
-    background: url(../img/win.png) center;
+    background: url(../img/bg-win.png) center;
+	background-repeat: no-repeat;
+	width: 730px;
+	height: 400px;
 }
 
 .bg-loss {
-    background: url(../img/loss.png) center;
+    background: url(../img/bg-loss.png) center;
+	background-repeat: no-repeat;
+	width: 730px;
+	height: 400px;
+}
+
+#restart-button {
+	margin-top: 200px;
+	margin-left: 120px;
 }
 
 button {
@@ -396,10 +407,8 @@ button {
 	border: none;
 }
 
-#hide-button {
-	padding:20px 15px;
+#hide-button, #continue-button {
 	text-align: center;
-	margin: 0 8px;
 	cursor:pointer;
 	border:none;
 	border-radius:30px;
@@ -413,10 +422,13 @@ button {
 	outline: none;
 	background: linear-gradient(180deg, #9C369D, #511D52);
 	position: absolute;
+	bottom: 50px;
 }
 
 #hide-button:hover,
-#hide-button:active {
+#hide-button:active,
+#continue-button:hover,
+#continue-button:active {
 	transform:translate(1px,1px);
 	box-shadow: 1px 1px 0 #511D52;
 }
@@ -523,5 +535,28 @@ button {
 		background: url(../img/rules-mob.png) center;
 		display: none;
 		top: 80px;
+	}
+
+	.bg-win {
+		background: url(../img/bg-win-mob.png) center;
+		background-repeat: no-repeat;
+		width: 320px;
+		height: 360px;
+	}
+	
+	.bg-loss {
+		background: url(../img/bg-loss-mob.png) center;
+		background-repeat: no-repeat;
+		width: 320px;
+		height: 360px;
+	}
+	
+	#restart-button {
+		margin-top: 220px;
+		margin-left: 0px;
+	}
+
+	#modal-message {
+		margin: 0;
 	}
 }

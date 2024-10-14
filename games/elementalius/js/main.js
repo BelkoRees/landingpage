@@ -403,8 +403,7 @@ let countUser = document.querySelector('.count-user'),
         // Функция для обработки проигрыша
         const showLoss = () => {
             modalContents.forEach(modalContent => modalContent.classList.add('bg-loss'));
-            modalMessage.style.backgroundColor = '#000000';
-            modalMessage.style.color = '#FFFFFF';
+            modalMessage.style.color = '#000000';
             modalMessage.innerText = 'К сожалению, вы проиграли эту войну';
             modal.style.display = 'flex';
             restartButton.addEventListener('click', restartGame);
@@ -413,7 +412,6 @@ let countUser = document.querySelector('.count-user'),
         // Функция для показа модального окна в случае победы
         const showWin = (text) => {
             modalContents.forEach(modalContent => modalContent.classList.add('bg-win'));
-            modalMessage.style.backgroundColor = '#FFFFFF';
             modalMessage.style.color = '#000000';
             modalMessage.innerText = 'Вы выбрались из лабиринта живым, поздравляю!';
             modal.style.display = 'flex';
@@ -432,9 +430,10 @@ let countUser = document.querySelector('.count-user'),
             });
         };
 
-        // Получаем элемент кнопки
+        // Получаем элементы кнопок
         const hideButton = document.getElementById('hide-button');
-    
+        const continueButton = document.getElementById('continue-button');
+
         // Проверка на победу или поражение
         if (countU <= 0) {
             showLoss();
@@ -443,34 +442,41 @@ let countUser = document.querySelector('.count-user'),
             switch (level) {
                 case 1:
                     level++;
-
-                    // Скрываем кнопку перед запуском первой анимации
-                    hideButton.style.display = "none";
                     
-                    // Запускаем первую анимацию и передаем callback для запуска второй анимации после завершения первой
+                    // Запускаем первую анимацию
                     displayTextWithAnimation(
                         "Противник, которого ты сейчас одолел — таинственная черная материя. Она владела темной магией копирования способностей противников и охраняла камень тьмы у входа в лабиринт. Теперь он твой и ты, внезапно для себя, получаешь способность копировать здоровье противников в начале битвы, поздравляю!",
                         '#393B48',
                         () => {
-                            // Временная задержка перед запуском второй анимации 
-                            setTimeout(() => {
+                            // После завершения первой анимации создаем новую кнопку для перехода ко второй анимации
+                            continueButton.innerHTML = 'Супер!';
+                            continueButton.style.display = 'block';
+                
+                            // Добавляем обработчик для новой кнопки
+                            continueButton.addEventListener('click', function() {
+                                // Скрываем кнопку после клика
+                                continueButton.style.display = "none";
+                
+                                // Запускаем вторую анимацию
                                 displayTextWithAnimation(
                                     "Ты идешь прямо, и немного подсмотрев из-за угла, видишь своего следующего противника...",
                                     '#394D3E',
                                     () => {
-                                        hideButton.innerHTML = "Продолжить";
-                                        // После завершения второй анимации разблокируем кнопку
+                                        // Показываем исходную кнопку после второй анимации
+                                        hideButton.innerHTML = "Подойти ближе";
                                         hideButton.style.display = "block";
-                                        // После завершения второй анимации добавляем обработчик для hide-button
+                
+                                        // Добавляем обработчик для hide-button
                                         document.getElementById('hide-button').addEventListener('click', hideTypewriter);
                                         playGame();
                                     }
                                 );
-                            }, 9000);
+                            });
                         }
                     );
                 
                     break;
+                
                            
     
                 case 2:
@@ -481,7 +487,10 @@ let countUser = document.querySelector('.count-user'),
                         "Второй побежденный тобой противник был ожившим кактусом в форме котенка. Он защищал пустынный оазис от непрошенных гостей. Кажется, он атаковал тебя с помощью своей стихии растений и вызывал песчаные бури. Помимо своей колючести, Кэткус также хитёр и любил периодически прятаться за защитными барьерами из земли. За его горшком ты находишь камень жизни.",
                         '#394D3E',
                         () => {
-                            setTimeout(() => {
+                            continueButton.innerHTML = 'Идти дальше';
+                            continueButton.style.display = 'block';
+                            continueButton.addEventListener('click', function() {
+                                continueButton.style.display = "none";                            
                                 displayTextWithAnimation(
                                     "После знойного оазиса ты проходишь в комнату дальше по лабиринту. Это большое пространство с кучей полок и миллионами различных книг и свитков. Только почему-то здесь подозрительно холодно...",
                                     '#2B5B70',
@@ -492,7 +501,7 @@ let countUser = document.querySelector('.count-user'),
                                         playGame();
                                     }
                                 );
-                            }, 12000);
+                            });
                         }
                     );
                 
@@ -505,7 +514,10 @@ let countUser = document.querySelector('.count-user'),
                         "Из упавшей с полки книги, ты узнаешь, что твоим третьим врагом был Совиный Призрак, древнее существо, которое давно умерло, но его дух охраняет библиотеку утерянных знаний. Совиный Призрак использует ледяные ветра и призрачные силы, чтобы защитить камень смерти и замораживать всех противников. Порыскавши по полкам, за одной из книг ты находишь камень смерти.",
                         '#2B5B70',
                         () => {
-                            setTimeout(() => {
+                            continueButton.innerHTML = 'Взять камень';
+                            continueButton.style.display = 'block';
+                            continueButton.addEventListener('click', function() {
+                                continueButton.style.display = "none";   
                                 displayTextWithAnimation(
                                     "Из книги ты уже узнал, кто будет твоим следующим противником, поэтому воду при защите и атаке наверное лучше не использовать...",
                                     '#6F702B',
@@ -516,7 +528,7 @@ let countUser = document.querySelector('.count-user'),
                                         playGame();
                                     }
                                 );
-                            }, 12000);
+                            });
                         }
                     );
                 
@@ -526,10 +538,13 @@ let countUser = document.querySelector('.count-user'),
                     level++;
                     hideButton.style.display = "none";
                     displayTextWithAnimation(
-                        "Тебе с трудом, но удается победить! Это сильно заряжает тебя энергией на последний бой, удачи!",
+                        "Тебе с трудом, но удается победить! Ты получаешь камень энергии. Это сильно заряжает тебя на последний бой, удачи!",
                         '#6F702B',
                         () => {
-                            setTimeout(() => {
+                            continueButton.innerHTML = 'Спасибо';
+                            continueButton.style.display = 'block';
+                            continueButton.addEventListener('click', function() {
+                                continueButton.style.display = "none";                               
                                 displayTextWithAnimation(
                                     "Последний и самый опасный противник. Это обычная зайка, которая каким-то образом получила силу фей и стала охранять стихийный камень света. Она использует магию фей и не настроена враждебно, но ради защиты камня, пойдет на всё! Ой, кажется она что-то сделала с твоей силой...",
                                     '#634B3B',
@@ -540,7 +555,7 @@ let countUser = document.querySelector('.count-user'),
                                         playGame();
                                     }
                                 );
-                            }, 5000);
+                            });
                         }
                     );
                 
@@ -553,17 +568,19 @@ let countUser = document.querySelector('.count-user'),
                         "Это невероятно, но тебе удалось одолеть всех пятерых противников и все нужные камни у тебя! Что будешь делать дальше?",
                         '#634B3B',
                         () => {
-                            setTimeout(() => {
+                            continueButton.innerHTML = 'Не знаю...';
+                            continueButton.style.display = 'block';
+                            continueButton.addEventListener('click', function() {
+                                continueButton.style.display = "none";    
                                 displayTextWithAnimation(
                                     "Я тебе подскажу: напиши автору этой игры, что тебе больше всего понравилось и что стоит изменить. Я уверен, он это оценит!",
                                     '#634B3B',
                                     () => {
-                                        hideButton.disabled = false;
                                         document.getElementById('hide-button').addEventListener('click', hideTypewriter);
                                         showWin();
                                     }
                                 );
-                            }, 5000);
+                            });
                         }
                     );
 
