@@ -106,6 +106,10 @@ let countUser = document.querySelector('.count-user'),
     result = document.querySelector('.result'),
     userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attackMode = null;
 
+    // Зададим тексту одну высоту текста, чтобы ничего не скакало
+    if(window.innerWidth <= 800)
+        document.querySelector('.result').style.height = "50px";
+
     function copySize() {
         const div1 = document.getElementsByClassName('game')[0]; // Исходный элемент
         const div2 = document.getElementsByClassName('typewriter')[0]; // Целевой элемент
@@ -272,7 +276,7 @@ let countUser = document.querySelector('.count-user'),
             // Раунд 5 (a(1) => f, e(1) => g, e(2) => fa)
             'wfa': { message: 'Вы нанесли урон!', damage: 1, sound: 'audio/win.mp3' },
             'gfa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' },
-            'ffa': { message: 'Ваш огненный удар был отражен! К сожалению, вы не успели увернуться', damage: -2, sound: 'audio/loss.mp3' },
+            'ffa': { message: 'Ваш огненный удар был поглащен!', damage: -2, sound: 'audio/loss.mp3' },
             'afa': { message: 'Враг устоял! 0 урона', damage: 0, sound: 'audio/draw.mp3' }
         },
         defense: {
@@ -407,6 +411,8 @@ let countUser = document.querySelector('.count-user'),
             modalMessage.innerText = 'К сожалению, вы проиграли эту войну';
             modal.style.display = 'flex';
             restartButton.addEventListener('click', restartGame);
+            const sound = 'audio/looser.mp3';
+            playSound(sound);
         };
     
         // Функция для показа модального окна в случае победы
@@ -416,6 +422,8 @@ let countUser = document.querySelector('.count-user'),
             modalMessage.innerText = 'Вы выбрались из лабиринта живым, поздравляю!';
             modal.style.display = 'flex';
             restartButton.addEventListener('click', restartGame);
+            const sound = 'audio/winner.mp3';
+            playSound(sound);
         };
     
         // Функция для отображения текста с анимацией
@@ -634,6 +642,7 @@ let countUser = document.querySelector('.count-user'),
         const { count, enemyClass, enemyText, background } = LEVELS[level];
         
         countU = countC = count;
+        countU = 1;
         result.innerText = 'Сделайте выбор';
         countUser.innerText = count;
         countComp.innerText = count;

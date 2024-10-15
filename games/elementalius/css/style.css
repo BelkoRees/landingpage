@@ -458,7 +458,7 @@ button {
 	.center-info {
 		width: 300px;
 		gap: 10px;
-		order: -1;
+		order: -2;
 		margin-bottom: 40px;
 	}
 	
@@ -467,6 +467,7 @@ button {
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: 15px;
+		order: -1;
 	}
 
 	.field {
