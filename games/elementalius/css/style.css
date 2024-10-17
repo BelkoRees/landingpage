@@ -339,16 +339,19 @@ button {
 	height: 168px;
 	width: 134px;
 	background: url(../img/sprite-enemy3.png) 0px 0px;
-	background-size: 938px 168px; 
-	animation: play4 1s steps(7) infinite; 
+	background-size: 1608px 168px; 
+	animation: play4 3s steps(12) infinite; 
 }
 
 @keyframes play4 {
 	0% {
 		background-position: 0px; 
 	}
+	70% {
+		background-position: -1608px; 
+	}
 	100% {
-		background-position: -938px; 
+		background-position: -1608px; 
 	}
 }
 
