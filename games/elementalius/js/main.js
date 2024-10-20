@@ -1,3 +1,6 @@
+//Включаем строгий режим
+'use strict';
+
 function copySize() {
     const div1 = document.getElementsByClassName('game')[0]; // Исходный элемент
     const div2 = document.getElementsByClassName('typewriter')[0]; // Целевой элемент
@@ -104,7 +107,7 @@ let countUser = document.querySelector('.count-user'),
     field = document.querySelectorAll('.field'),
     choice = document.querySelectorAll('.choice'),
     result = document.querySelector('.result'),
-    userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attackMode = null;
+    userStep, userCh, compStep, countU = 10, countC = 10, level = 1, blocked = false, attackMode = null, lvlFinished = false;
 
     // Зададим тексту одну высоту текста, чтобы ничего не скакало
     if(window.innerWidth <= 800)
@@ -476,6 +479,7 @@ let countUser = document.querySelector('.count-user'),
                 
                                         // Добавляем обработчик для hide-button
                                         document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        lvlFinished = true
                                         playGame();
                                     }
                                 );
@@ -506,6 +510,7 @@ let countUser = document.querySelector('.count-user'),
                                         hideButton.innerHTML = "Обернуться";
                                         hideButton.style.display = "block";
                                         document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        lvlFinished = true
                                         playGame();
                                     }
                                 );
@@ -533,6 +538,7 @@ let countUser = document.querySelector('.count-user'),
                                         hideButton.innerHTML = "В бой!";
                                         hideButton.style.display = "block";
                                         document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        lvlFinished = true;
                                         playGame();
                                     }
                                 );
@@ -560,6 +566,7 @@ let countUser = document.querySelector('.count-user'),
                                         hideButton.innerHTML = "Страшно, но я справлюсь!";
                                         hideButton.style.display = "block";
                                         document.getElementById('hide-button').addEventListener('click', hideTypewriter);
+                                        lvlFinished = true;
                                         playGame();
                                     }
                                 );
@@ -646,57 +653,59 @@ let countUser = document.querySelector('.count-user'),
         countUser.innerText = count;
         countComp.innerText = count;
         field.forEach(item => item.classList.remove('active', 'error'));
-    
-        // Обновление врага
-        if (enemyClass == "enemy2") {
-            const fireButton = document.querySelector('.comp-field .fire');
-            const waterButton = document.querySelector('.comp-field .water');
-            fireButton.classList.replace('fire', 'grass');
-            fireButton.setAttribute('data-field', 'gr');
-            waterButton.classList.replace('water', 'sand');
-            waterButton.setAttribute('data-field', 's');
-            document.querySelector('.sprite-img.enemy').classList.replace('enemy', enemyClass);
-            document.querySelector('.comp-text p').innerText = enemyText;
-            document.querySelector('body').style.background = background;
-        }
-        else if (enemyClass == "enemy3") {
-            const grassButton = document.querySelector('.comp-field .grass');
-            const sandButton = document.querySelector('.comp-field .sand');
-            grassButton.classList.replace('grass', 'ice');
-            grassButton.setAttribute('data-field', 'i');
-            sandButton.classList.replace('sand', 'ghost');
-            sandButton.setAttribute('data-field', 'gh');
-            document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', enemyClass);
-            document.querySelector('.comp-text p').innerText = enemyText;
-            document.querySelector('body').style.background = background;
-        }
-        else if (enemyClass == "enemy4") {
-            const iceButton = document.querySelector('.comp-field .ice');
-            const groundButton = document.querySelector('.comp-field .ground');
-            const ghostButton = document.querySelector('.comp-field .ghost');
-            iceButton.classList.replace('ice', 'electro1');
-            iceButton.setAttribute('data-field', 'e');
-            ghostButton.classList.replace('ghost', 'air1');
-            ghostButton.setAttribute('data-field', 'a');
-            groundButton.classList.replace('ground', 'electro2');
-            groundButton.setAttribute('data-field', 'e');
-            document.querySelector('.sprite-img.enemy3').classList.replace('enemy3', enemyClass);
-            document.querySelector('.comp-text p').innerText = enemyText;
-            document.querySelector('body').style.background = background;
-        }
-        else if (enemyClass == "enemy5") {
-            const electro1Button = document.querySelector('.comp-field .electro1');
-            const electro2Button = document.querySelector('.comp-field .electro2');
-            const air1Button = document.querySelector('.comp-field .air1');
-            electro2Button.classList.replace('electro2', 'fairy');
-            electro2Button.setAttribute('data-field', 'fa');
-            electro1Button.classList.replace('electro1', 'ground');
-            electro1Button.setAttribute('data-field', 'g');
-            air1Button.classList.replace('air1', 'fire');
-            air1Button.setAttribute('data-field', 'f');
-            document.querySelector('.sprite-img.enemy4').classList.replace('enemy4', enemyClass);
-            document.querySelector('.comp-text p').innerText = enemyText;
-            document.querySelector('body').style.background = background;
+        
+        if (lvlFinished == true) {
+            // Обновление врага
+            if (enemyClass == "enemy2") {
+                const fireButton = document.querySelector('.comp-field .fire');
+                const waterButton = document.querySelector('.comp-field .water');
+                fireButton.classList.replace('fire', 'grass');
+                fireButton.setAttribute('data-field', 'gr');
+                waterButton.classList.replace('water', 'sand');
+                waterButton.setAttribute('data-field', 's');
+                document.querySelector('.sprite-img.enemy').classList.replace('enemy', enemyClass);
+                document.querySelector('.comp-text p').innerText = enemyText;
+                document.querySelector('body').style.background = background;
+            }
+            else if (enemyClass == "enemy3") {
+                const grassButton = document.querySelector('.comp-field .grass');
+                const sandButton = document.querySelector('.comp-field .sand');
+                grassButton.classList.replace('grass', 'ice');
+                grassButton.setAttribute('data-field', 'i');
+                sandButton.classList.replace('sand', 'ghost');
+                sandButton.setAttribute('data-field', 'gh');
+                document.querySelector('.sprite-img.enemy2').classList.replace('enemy2', enemyClass);
+                document.querySelector('.comp-text p').innerText = enemyText;
+                document.querySelector('body').style.background = background;
+            }
+            else if (enemyClass == "enemy4") {
+                const iceButton = document.querySelector('.comp-field .ice');
+                const groundButton = document.querySelector('.comp-field .ground');
+                const ghostButton = document.querySelector('.comp-field .ghost');
+                iceButton.classList.replace('ice', 'electro1');
+                iceButton.setAttribute('data-field', 'e');
+                ghostButton.classList.replace('ghost', 'air1');
+                ghostButton.setAttribute('data-field', 'a');
+                groundButton.classList.replace('ground', 'electro2');
+                groundButton.setAttribute('data-field', 'e');
+                document.querySelector('.sprite-img.enemy3').classList.replace('enemy3', enemyClass);
+                document.querySelector('.comp-text p').innerText = enemyText;
+                document.querySelector('body').style.background = background;
+            }
+            else if (enemyClass == "enemy5") {
+                const electro1Button = document.querySelector('.comp-field .electro1');
+                const electro2Button = document.querySelector('.comp-field .electro2');
+                const air1Button = document.querySelector('.comp-field .air1');
+                electro2Button.classList.replace('electro2', 'fairy');
+                electro2Button.setAttribute('data-field', 'fa');
+                electro1Button.classList.replace('electro1', 'ground');
+                electro1Button.setAttribute('data-field', 'g');
+                air1Button.classList.replace('air1', 'fire');
+                air1Button.setAttribute('data-field', 'f');
+                document.querySelector('.sprite-img.enemy4').classList.replace('enemy4', enemyClass);
+                document.querySelector('.comp-text p').innerText = enemyText;
+                document.querySelector('body').style.background = background;
+            }
         }
     }
     
@@ -722,7 +731,9 @@ let countUser = document.querySelector('.count-user'),
         if (LEVELS[level]) {
             updateUIForLevel(level);
         }
-    
+
+        lvlFinished = false;
+
         // Разблокируем радиокнопки при старте новой игры
         choice.forEach(radio => {
             radio.disabled = false;
